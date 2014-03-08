@@ -1,0 +1,27 @@
+{
+  "name": "hexo-math",
+  "version": "0.0.9",
+  "description": "Add MathJax support to hexo",
+  "main": "./bin/index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akfish/hexo-math.git"
+  },
+  "keywords": ["website", "blog", "cms", "framework", "hexo", "mathjax"],
+  "author": "AKFish <akfish@gmail.com> (http://catx.me)",
+  "license": {
+    "type": "GPLv2",
+    "url": "https://raw.github.com/akfish/hexo-math/master/LICENSE"
+  },
+  "engines": {
+    "hexo": "*"
+  },
+  "dependencies": {
+    "request": "*",
+    "graceful-fs": "*",
+    "async": "*",
+    "url": "*",
+    "path": "*",
+    "colors": "*"
+  }
+}

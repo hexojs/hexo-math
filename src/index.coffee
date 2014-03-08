@@ -10,6 +10,7 @@ fs = require 'fs'
 
 # Local
 packageInfo = require '../package.json'
+Command = require './Command'
 
 # Options
 mathOptions = 
@@ -22,4 +23,5 @@ mathOptions =
 
 
 hexo.extend.console.register "math", packageInfo.description, mathOptions, (args, callback) ->
-        console.log "-_-"
+        cmd = new Command callback
+        cmd.execute args._[0]

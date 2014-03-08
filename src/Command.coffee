@@ -3,6 +3,7 @@ colors = require 'colors'
 Log = require './Log'
 Layout = require './Layout'
 async = require 'async'
+fs = require 'fs'
 
 log = new Log()
 
@@ -10,6 +11,12 @@ log = new Log()
 file = hexo.file
 themeDir = hexo.theme_dir
 layoutDir = themeDir + "layout\\"
+mathJaxLayoutFile = layoutDir + "_partial\\math-jax.ejs"
+
+pad = (val, length, padChar = '.') ->
+        val += ''
+        numPads = length - val.length
+        if (numPads > 0) then val + new Array(numPads + 1).join(padChar) else val
 
 yesOrNo = (b) ->
         answer = if b then "YES".green else "NO".red
@@ -48,17 +55,16 @@ list = (next) ->
                 next? null, files
 
 check = (layouts, next) ->
-        mathjax = layouts.filter (f) -> f.match ".*?math-jax.ejs$"
-        deployed = mathjax.length != 0
+        deployed = fs.existsSync mathJaxLayoutFile
 
-        log.info "Layout math-jax.ejs deployed .......... #{yesOrNo(deployed)}"
+        log.info pad("Layout math-jax.ejs deployed ", 50) + " #{yesOrNo(deployed)}"
         load layouts, (err, headLayouts) ->
                 if err?
                         next? err
                         return
                 injected = true
                 for layout, i in headLayouts
-                        log.info "Injected #{i + 1} of #{headLayouts.length} .......... #{yesOrNo(layout.injected)}"
+                        log.info pad("Injected #{i + 1} of #{headLayouts.length} ", 50) +  " #{yesOrNo(layout.injected)}"
                         if not layout.injected then injected = false
                 next? null,
                         deployed: deployed

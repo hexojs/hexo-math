@@ -11,7 +11,10 @@ log = new Log()
 file = hexo.file
 themeDir = hexo.theme_dir
 layoutDir = themeDir + "layout\\"
-mathJaxLayoutFile = layoutDir + "_partial\\math-jax.ejs"
+assetDir = __dirname + "\\..\\asset\\"
+mathJaxLayoutName = "math-jax.ejs"
+mathJaxLayoutAsset = assetDir + mathJaxLayoutName
+mathJaxLayoutFile = layoutDir + "_partial\\" + mathJaxLayoutName
 
 pad = (val, length, padChar = '.') ->
         val += ''
@@ -76,6 +79,9 @@ inject = (payload, next) ->
                 log.info "Already installed."
                 next? null, payload
                 return
+        if not payload.deployed
+                fs.linkSync mathJaxLayoutAsset, mathJaxLayoutFile
+                log.info pad("Deploy math-jax.ejs ", 50) +  " #{yesOrNo(true)}"
         console.log "Do install stuff"
 
 remove = (payload, next) ->
@@ -83,6 +89,10 @@ remove = (payload, next) ->
                 log.info "Not installed."
                 next? null, payload
                 return
+        if payload.deployed
+                fs.unlinkSync mathJaxLayoutFile
+                log.info pad("Undeploy math-jax.ejs ", 50) +  " #{yesOrNo(true)}"
+
         console.log "Do uninstall stuff"
         
         
@@ -96,6 +106,8 @@ module.exports = class Command
                 else
                         log.error "Unknown command: #{opt}"
                         hexo.call 'help', {_: ['math']}, @callback
+
+
         
         install: () ->
                 async.waterfall [

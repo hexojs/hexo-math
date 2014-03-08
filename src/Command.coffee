@@ -39,7 +39,7 @@ load = (files, callback) ->
 
         
 list = (next) ->
-        log.info "Install to theme/layout folder: #{layoutDir}"
+        log.info "Layout folder: #{layoutDir}"
         file.list layoutDir, null, (err, files) ->
                 if err?
                         next? err
@@ -71,6 +71,14 @@ inject = (payload, next) ->
                 next? null, payload
                 return
         console.log "Do install stuff"
+
+remove = (payload, next) ->
+        if not payload.deployed or not payload.injected
+                log.info "Not installed."
+                next? null, payload
+                return
+        console.log "Do uninstall stuff"
+        
         
 module.exports = class Command
         constructor: (@callback) ->
@@ -84,7 +92,6 @@ module.exports = class Command
                         hexo.call 'help', {_: ['math']}, @callback
         
         install: () ->
-
                 async.waterfall [
                         list,
                         check,
@@ -95,5 +102,13 @@ module.exports = class Command
                                 else
                                         log.info "Done!"
                 
-        remove: () ->
-                log.info "Run remove"
+        uninstall: () ->
+                async.waterfall [
+                        list,
+                        check,
+                        remove
+                        ], (err, result) ->
+                                if err?
+                                        log.error err
+                                else
+                                        log.info "Done!"

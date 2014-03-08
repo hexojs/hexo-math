@@ -25,8 +25,8 @@ mathOptions = {
       name: 'install',
       desc: 'Install MathJax dependencies.'
     }, {
-      name: 'remove',
-      desc: 'Removes MathJax dependencies.'
+      name: 'uninstall',
+      desc: 'Uninstall MathJax dependencies.'
     }
   ]
 };

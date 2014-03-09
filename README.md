@@ -47,18 +47,18 @@ $$\frac{\partial u}{\partial t}
 **Tag inline:**
 
 ```markdown
-This equation {&#37; math \cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1 %} is inline.
+This equation {% math \cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1 %} is inline.
 ```
 
 **Tag Block:**
 ```markdown
-{&#37; math-block %}
+{% math-block %}
 \begin{aligned}
 \dot{x} & = \sigma(y-x) \\
 \dot{y} & = \rho x - y - xz \\
 \dot{z} & = -\beta z + xy
 \end{aligned}
-{&#37; endmath-block %}
+{% endmath-block %}
 ```
 
 

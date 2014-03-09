@@ -45,3 +45,11 @@ hexo.extend.tag.register("math", function(args, content) {
   result = "<span>$" + (eval('"' + eq + '"')) + "$</span>";
   return result;
 });
+
+hexo.extend.tag.register("math-block", (function(args, content) {
+  var result;
+  console.log(args);
+  console.log(content);
+  result = "<span>$$" + content + "$$</span>";
+  return result;
+}), true);

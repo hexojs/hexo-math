@@ -25,6 +25,10 @@ yesOrNo = (b) ->
         answer = if b then "YES".green else "NO".red
         "#{"[".bold}#{answer}#{"]".bold}"
 
+doneOrFail = (b) ->
+        answer = if b then "DONE".green else "FAIL".red
+        "#{"[".bold}#{answer}#{"]".bold}"
+
 load = (files, callback) ->
         # Parallelly load scripts
         tasks = []
@@ -80,21 +84,60 @@ inject = (payload, next) ->
                 next? null, payload
                 return
         if not payload.deployed
-                fs.linkSync mathJaxLayoutAsset, mathJaxLayoutFile
-                log.info pad("Deploy math-jax.ejs ", 50) +  " #{yesOrNo(true)}"
-        console.log "Do install stuff"
+                try
+                        fs.linkSync mathJaxLayoutAsset, mathJaxLayoutFile
+                        log.info pad("Deploy math-jax.ejs ", 50) +  " #{doneOrFail(true)}"
+                catch error
+                        log.error pad("Deploy math-jax.ejs ", 50) +  " #{doneOrFail(false)}"
+                        log.error error
+
+        tasks = []
+        for layout in payload.layouts
+                if not layout.injected
+                        tasks.push (callback) ->
+                                layout.inject()
+                                layout.update(callback)
+
+        async.parallel tasks, (err, results) ->
+                if err?
+                        log.error pad("Inject #{err.length} layouts", 50) +  " #{doneOrFail(false)}"
+                        for e in err
+                                log.error e
+                        next? err
+                log.info pad("Inject #{results.length} layouts", 50) +  " #{doneOrFail(true)}"
+                next? null, null
+
+
 
 remove = (payload, next) ->
-        if not payload.deployed or not payload.injected
+        if not payload.deployed and not payload.injected
                 log.info "Not installed."
                 next? null, payload
                 return
         if payload.deployed
-                fs.unlinkSync mathJaxLayoutFile
-                log.info pad("Undeploy math-jax.ejs ", 50) +  " #{yesOrNo(true)}"
+                try
+                        fs.unlinkSync mathJaxLayoutFile
+                        log.info pad("Undeploy math-jax.ejs ", 50) +  " #{doneOrFail(true)}"
+                catch error
+                        log.error pad("Undeploy math-jax.ejs ", 50) +  " #{doneOrFail(false)}"
+                        log.error error
+                        
+        tasks = []
+        for layout in payload.layouts
+                if layout.injected
+                        tasks.push (callback) ->
+                                layout.uninject()
+                                layout.update(callback)
 
-        console.log "Do uninstall stuff"
-        
+        async.parallel tasks, (err, results) ->
+                if err?
+                        log.error pad("Uninject #{err.length} layouts", 50) +  " #{doneOrFail(false)}"
+                        for e in err
+                                log.error e
+                        next? err
+                log.info pad("Uninject #{results.length} layouts", 50) +  " #{doneOrFail(true)}"
+                next? null, null
+
         
 module.exports = class Command
         constructor: (@callback) ->

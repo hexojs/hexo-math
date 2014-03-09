@@ -5,16 +5,19 @@ file = hexo.file
 async = require 'async'
 
 headTag = "</head>"
-inject = "<%- partial('math-jax')%>"
+injectScript = "<%- partial('math-jax')%>"
 makeLoaderCallback = (source, callback) ->
     return (err, src) ->
         if err? then return callback(err)
         if not src? then return callback(new Error("Null source."))
         source.src = src
         source.hasHead = src.indexOf(headTag) >= 0
-        source.injected = src.indexOf(inject) >= 0
+        source.injected = src.indexOf(injectScript) >= 0
         
         return callback(null, source)
+
+escapeRegExp = (str) ->
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
 
 module.exports = class Layout
         constructor: (@path) ->
@@ -26,23 +29,18 @@ module.exports = class Layout
         load: (callback) ->
                 file.readFile(@path, null, makeLoaderCallback(@, callback))
 
+        inject: () ->
+                r = new RegExp "#{escapeRegExp(headTag)}", "g"
+                @src = @src.replace r, "#{injectScript}\n#{headTag}"
+                
+        uninject: () ->
+                r = new RegExp "#{escapeRegExp(injectScript)}\n", "g"
+                @src = @src.replace r, ""
+                
         update: (callback) ->
-                newSrc = @src
-                for img in @images
-                        r = new RegExp escapeRegExp img.url, "g"
-                        newSrc = newSrc.replace r, "{{BASE_PATH}}/images/#{img.localPath}"
-                        #console.log "#{img.url} -> #{img.localPath}"
-                d = new Date()
-                timestamp = d.toISOString()
-                        .replace(/:/g, "-")
-
-                # write backup file
-                file.writeFile "#{@path}.#{timestamp}.bak", @src, (err) =>
+                file.writeFile @path, @src, (err) ->
                         if err?
-                                console.log "Fail to backup #{@path}"
-                        file.writeFile @path, newSrc, (err) ->
-                                if err?
-                                        callback? err, @
-                                else
-                                        callback? null, @
+                                callback? err, @
+                        else
+                                callback? null, @
                 

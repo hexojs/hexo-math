@@ -35,8 +35,6 @@ hexo.extend.tag.register "math", (args, content) ->
 
 # Block Tag
 hexo.extend.tag.register "math-block", ((args, content) ->
-        console.log args
-        console.log content
         result = "<span>$$#{content}$$</span>"
         return result
         ), true

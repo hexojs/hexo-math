@@ -1,6 +1,6 @@
 {
   "name": "hexo-math",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Add MathJax support to hexo",
   "main": "./bin/index",
   "repository": {

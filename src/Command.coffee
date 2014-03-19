@@ -4,17 +4,18 @@ Log = require './Log'
 Layout = require './Layout'
 async = require 'async'
 fs = require 'fs'
+path = require 'path'
 
 log = new Log()
 
 # Hexo
 file = hexo.file
 themeDir = hexo.theme_dir
-layoutDir = themeDir + "layout\\"
-assetDir = __dirname + "\\..\\asset\\"
+layoutDir = path.resolve themeDir, "layout" 
+assetDir = path.resolve __dirname, "../asset"
 mathJaxLayoutName = "math-jax.ejs"
-mathJaxLayoutAsset = assetDir + mathJaxLayoutName
-mathJaxLayoutFile = layoutDir + "_partial\\" + mathJaxLayoutName
+mathJaxLayoutAsset = path.resolve assetDir, mathJaxLayoutName
+mathJaxLayoutFile = path.resolve layoutDir, "_partial\\", mathJaxLayoutName
 
 pad = (val, length, padChar = '.') ->
         val += ''
@@ -37,10 +38,8 @@ load = (files, callback) ->
                 return (cb) ->
                         layout = new Layout path
                         layout.load cb
-
         files.forEach (f) ->
-
-                fullPath = layoutDir + f
+                fullPath = path.resolve layoutDir, f
                 tasks.push makeTask fullPath
 
         async.parallel tasks, (err, results) ->

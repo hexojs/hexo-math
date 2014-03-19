@@ -27,7 +27,7 @@ mathJaxLayoutName = "math-jax.ejs";
 
 mathJaxLayoutAsset = path.resolve(assetDir, mathJaxLayoutName);
 
-mathJaxLayoutFile = path.resolve(layoutDir, "_partial\\", mathJaxLayoutName);
+mathJaxLayoutFile = path.resolve(layoutDir, "_partial", mathJaxLayoutName);
 
 pad = function(val, length, padChar) {
   var numPads;
@@ -141,6 +141,8 @@ inject = function(payload, next) {
   }
   if (!payload.deployed) {
     try {
+      console.log("" + mathJaxLayoutAsset + " exists: " + (fs.existsSync(mathJaxLayoutAsset)));
+      console.log("" + mathJaxLayoutFile + " exists: " + (fs.existsSync(mathJaxLayoutFile)));
       fs.linkSync(mathJaxLayoutAsset, mathJaxLayoutFile);
       log.info(pad("Deploy math-jax.ejs ", 50) + (" " + (doneOrFail(true))));
     } catch (_error) {

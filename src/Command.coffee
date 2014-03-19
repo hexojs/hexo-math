@@ -15,7 +15,7 @@ layoutDir = path.resolve themeDir, "layout"
 assetDir = path.resolve __dirname, "../asset"
 mathJaxLayoutName = "math-jax.ejs"
 mathJaxLayoutAsset = path.resolve assetDir, mathJaxLayoutName
-mathJaxLayoutFile = path.resolve layoutDir, "_partial\\", mathJaxLayoutName
+mathJaxLayoutFile = path.resolve layoutDir, "_partial", mathJaxLayoutName
 
 pad = (val, length, padChar = '.') ->
         val += ''
@@ -84,6 +84,8 @@ inject = (payload, next) ->
                 return
         if not payload.deployed
                 try
+                        console.log("#{mathJaxLayoutAsset} exists: #{fs.existsSync(mathJaxLayoutAsset)}")
+                        console.log("#{mathJaxLayoutFile} exists: #{fs.existsSync(mathJaxLayoutFile)}")
                         fs.linkSync mathJaxLayoutAsset, mathJaxLayoutFile
                         log.info pad("Deploy math-jax.ejs ", 50) +  " #{doneOrFail(true)}"
                 catch error

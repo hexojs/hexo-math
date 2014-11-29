@@ -81,7 +81,7 @@ load = function(files, callback) {
     heads = results.filter(function(l) {
       return l.hasHead;
     });
-    log.info("Found " + heads.length + " with <head>");
+    log.info("Found " + heads.length + " with </body>");
     return typeof callback === "function" ? callback(null, heads) : void 0;
   });
 };

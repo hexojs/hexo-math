@@ -7,6 +7,20 @@ A hexo plugin that uses MathJax to render math equations. Features:
 * Provide support to both MathJax's inline math syntax and math tags
 
 (See a Chinese version of this document [here](http://blog.catx.me/2014/03/09/hexo-mathjax-plugin/))
+
+## Migration Note
+
+### From 1.0.3 and before
+
+Since 1.0.4, MathJax scripts will be injected in `<body>` section instead of `<head>` section.
+Before you update `hexo-math` to newer version, you should run:
+
+> $ hexo math uninstall
+
+After `hexo-math` is updated, run install again:
+
+> $ hexo math install
+
 ## Install
 
 > npm install hexo-math --save
@@ -60,5 +74,3 @@ This equation {% math \cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \
 \end{aligned}
 {% endmath-block %}
 ```
-
-

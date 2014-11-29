@@ -11,7 +11,7 @@ log = new Log()
 # Hexo
 file = hexo.file
 themeDir = hexo.theme_dir
-layoutDir = path.resolve themeDir, "layout" 
+layoutDir = path.resolve themeDir, "layout"
 assetDir = path.resolve __dirname, "../asset"
 mathJaxLayoutName = "math-jax.ejs"
 mathJaxLayoutAsset = path.resolve assetDir, mathJaxLayoutName
@@ -47,10 +47,10 @@ load = (files, callback) ->
                         next? err
                 log.info "Load #{results.length} layout files"
                 heads = results.filter (l) -> l.hasHead
-                log.info "Found #{heads.length} with <head>"
+                log.info "Found #{heads.length} with </body>"
                 callback? null, heads
 
-        
+
 list = (next) ->
         log.info "Layout folder: #{layoutDir}"
         file.list layoutDir, null, (err, files) ->
@@ -122,7 +122,7 @@ remove = (payload, next) ->
                 catch error
                         log.error pad("Undeploy math-jax.ejs ", 50) +  " #{doneOrFail(false)}"
                         log.error error
-                        
+
         tasks = []
         for layout in payload.layouts
                 if layout.injected
@@ -139,7 +139,7 @@ remove = (payload, next) ->
                 log.info pad("Uninject #{results.length} layouts", 50) +  " #{doneOrFail(true)}"
                 next? null, null
 
-        
+
 module.exports = class Command
         constructor: (@callback) ->
 
@@ -152,7 +152,7 @@ module.exports = class Command
                         hexo.call 'help', {_: ['math']}, @callback
 
 
-        
+
         install: () ->
                 async.waterfall [
                         list,
@@ -163,7 +163,7 @@ module.exports = class Command
                                         log.error err
                                 else
                                         log.info "Done!"
-                
+
         uninstall: () ->
                 async.waterfall [
                         list,

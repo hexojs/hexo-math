@@ -10,6 +10,13 @@ A hexo plugin that uses MathJax to render math equations. Features:
 
 ## Migration Note
 
+### From 1.0.4 (Support Hexo 3.0)
+
+Hexo 3.0 introduces multiple breaking changes. Versions before 1.0.5 won't work with it.
+The following changes are made since 1.0.5 to adapt the new 3.0 API:
+
+* Block math tag renamed from `math-block` to `math_block`
+
 ### From 1.0.3 and before
 
 Since 1.0.4, MathJax scripts will be injected in `<body>` section instead of `<head>` section.
@@ -66,11 +73,11 @@ This equation {% math \cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \
 
 **Tag Block:**
 ```markdown
-{% math-block %}
+{% math_block %}
 \begin{aligned}
 \dot{x} & = \sigma(y-x) \\
 \dot{y} & = \rho x - y - xz \\
 \dot{z} & = -\beta z + xy
 \end{aligned}
-{% endmath-block %}
+{% endmath_block %}
 ```

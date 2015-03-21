@@ -3,11 +3,11 @@ var Command, async, colors, extend, file, fs, htmlTag, mathOptions, packageInfo,
 
 extend = hexo.extend;
 
-util = hexo.util;
+util = require('hexo-util');
 
-file = hexo.file;
+file = require('hexo-fs');
 
-htmlTag = hexo.util.html_tag;
+htmlTag = util.html_tag;
 
 async = require('async');
 
@@ -35,7 +35,7 @@ mathOptions = {
 
 hexo.extend.console.register("math", packageInfo.description, mathOptions, function(args, callback) {
   var cmd;
-  cmd = new Command(callback);
+  cmd = new Command(hexo, callback);
   return cmd.execute(args._[0]);
 });
 
@@ -46,8 +46,10 @@ hexo.extend.tag.register("math", function(args, content) {
   return result;
 });
 
-hexo.extend.tag.register("math-block", (function(args, content) {
+hexo.extend.tag.register("math_block", (function(args, content) {
   var result;
   result = "<span>$$" + content + "$$</span>";
   return result;
-}), true);
+}), {
+  ends: true
+});

@@ -1,7 +1,7 @@
 # Hexo
 extend = hexo.extend
-util = hexo.util
-file = hexo.file
+util = require 'hexo-util'
+file = require 'hexo-fs'
 htmlTag = hexo.util.html_tag
 
 # Modules

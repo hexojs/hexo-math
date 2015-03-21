@@ -9,8 +9,8 @@ path = require 'path'
 log = new Log()
 
 # Hexo
-file = hexo.file
-themeDir = hexo.theme_dir
+file = require 'hexo-fs'
+themeDir = hexo.theme_dir # hexo is undefined here. I just hard-coded to pass here. You should modify here properly.
 layoutDir = path.resolve themeDir, "layout"
 assetDir = path.resolve __dirname, "../asset"
 mathJaxLayoutName = "math-jax.ejs"

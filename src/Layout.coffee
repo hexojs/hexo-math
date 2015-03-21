@@ -1,6 +1,6 @@
-extend = hexo.extend
-util = hexo.util
-file = hexo.file
+# extend = hexo.extend
+util = require 'hexo-util'
+file = require 'hexo-fs'
 
 async = require 'async'
 

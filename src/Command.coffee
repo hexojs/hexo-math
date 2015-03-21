@@ -10,12 +10,13 @@ log = new Log()
 
 # Hexo
 file = require 'hexo-fs'
-themeDir = hexo.theme_dir # hexo is undefined here. I just hard-coded to pass here. You should modify here properly.
-layoutDir = path.resolve themeDir, "layout"
-assetDir = path.resolve __dirname, "../asset"
-mathJaxLayoutName = "math-jax.ejs"
-mathJaxLayoutAsset = path.resolve assetDir, mathJaxLayoutName
-mathJaxLayoutFile = path.resolve layoutDir, "_partial", mathJaxLayoutName
+# Ugly fix, initialized in Command#constructor when Hexo object is avaliable
+themeDir = null#hexo.theme_dir
+layoutDir = null#path.resolve themeDir, "layout"
+assetDir = null#path.resolve __dirname, "../asset"
+mathJaxLayoutName = null#"math-jax.ejs"
+mathJaxLayoutAsset = null#path.resolve assetDir, mathJaxLayoutName
+mathJaxLayoutFile = null#path.resolve layoutDir, "_partial", mathJaxLayoutName
 
 pad = (val, length, padChar = '.') ->
   val += ''
@@ -53,7 +54,7 @@ load = (files, callback) ->
 
 list = (next) ->
   log.info "Layout folder: #{layoutDir}"
-  file.list layoutDir, null, (err, files) ->
+  file.listDir layoutDir, null, (err, files) ->
     if err?
       next? err
     files = files.filter (f) -> f.match ".*?\.ejs$"
@@ -141,7 +142,13 @@ remove = (payload, next) ->
 
 
 module.exports = class Command
-  constructor: (@callback) ->
+  constructor: (@hexo, @callback) ->
+    themeDir = @hexo.theme_dir
+    layoutDir = path.resolve themeDir, "layout"
+    assetDir = path.resolve __dirname, "../asset"
+    mathJaxLayoutName = "math-jax.ejs"
+    mathJaxLayoutAsset = path.resolve assetDir, mathJaxLayoutName
+    mathJaxLayoutFile = path.resolve layoutDir, "_partial", mathJaxLayoutName
 
   execute: (opt) ->
     handler = @[opt]
@@ -149,7 +156,7 @@ module.exports = class Command
       handler()
     else
       log.error "Unknown command: #{opt}"
-      hexo.call 'help', {_: ['math']}, @callback
+      @hexo.call 'help', {_: ['math']}, @callback
 
 
 

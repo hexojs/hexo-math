@@ -2,7 +2,7 @@
 extend = hexo.extend
 util = require 'hexo-util'
 file = require 'hexo-fs'
-htmlTag = hexo.util.html_tag
+htmlTag = util.html_tag
 
 # Modules
 async = require 'async'
@@ -24,7 +24,7 @@ mathOptions =
 
 # The console
 hexo.extend.console.register "math", packageInfo.description, mathOptions, (args, callback) ->
-  cmd = new Command callback
+  cmd = new Command hexo, callback
   cmd.execute args._[0]
 
 # Single Tag
@@ -34,7 +34,7 @@ hexo.extend.tag.register "math", (args, content) ->
   return result
 
 # Block Tag
-hexo.extend.tag.register "math-block", ((args, content) ->
+hexo.extend.tag.register "math_block", ((args, content) ->
   result = "<span>$$#{content}$$</span>"
   return result
-  ), true
+  ), ends: true

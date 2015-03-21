@@ -15,19 +15,19 @@ path = require('path');
 
 log = new Log();
 
-file = hexo.file;
+file = require('hexo-fs');
 
-themeDir = hexo.theme_dir;
+themeDir = null;
 
-layoutDir = path.resolve(themeDir, "layout");
+layoutDir = null;
 
-assetDir = path.resolve(__dirname, "../asset");
+assetDir = null;
 
-mathJaxLayoutName = "math-jax.ejs";
+mathJaxLayoutName = null;
 
-mathJaxLayoutAsset = path.resolve(assetDir, mathJaxLayoutName);
+mathJaxLayoutAsset = null;
 
-mathJaxLayoutFile = path.resolve(layoutDir, "_partial", mathJaxLayoutName);
+mathJaxLayoutFile = null;
 
 pad = function(val, length, padChar) {
   var numPads;
@@ -88,7 +88,7 @@ load = function(files, callback) {
 
 list = function(next) {
   log.info("Layout folder: " + layoutDir);
-  return file.list(layoutDir, null, function(err, files) {
+  return file.listDir(layoutDir, null, function(err, files) {
     if (err != null) {
       if (typeof next === "function") {
         next(err);
@@ -227,8 +227,15 @@ remove = function(payload, next) {
 };
 
 module.exports = Command = (function() {
-  function Command(callback) {
+  function Command(hexo, callback) {
+    this.hexo = hexo;
     this.callback = callback;
+    themeDir = this.hexo.theme_dir;
+    layoutDir = path.resolve(themeDir, "layout");
+    assetDir = path.resolve(__dirname, "../asset");
+    mathJaxLayoutName = "math-jax.ejs";
+    mathJaxLayoutAsset = path.resolve(assetDir, mathJaxLayoutName);
+    mathJaxLayoutFile = path.resolve(layoutDir, "_partial", mathJaxLayoutName);
   }
 
   Command.prototype.execute = function(opt) {
@@ -238,7 +245,7 @@ module.exports = Command = (function() {
       return handler();
     } else {
       log.error("Unknown command: " + opt);
-      return hexo.call('help', {
+      return this.hexo.call('help', {
         _: ['math']
       }, this.callback);
     }

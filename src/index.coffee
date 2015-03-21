@@ -1,8 +1,8 @@
 # Hexo
 extend = hexo.extend
-util = hexo.util
-file = hexo.file
-htmlTag = hexo.util.html_tag
+util = require 'hexo-util'
+file = require 'hexo-fs'
+htmlTag = util.html_tag
 
 # Modules
 async = require 'async'
@@ -14,27 +14,27 @@ packageInfo = require '../package.json'
 Command = require './Command'
 
 # Options
-mathOptions = 
-        desc: packageInfo.description
-        usage: '<argument>'
-        arguments: [
-                {name: 'install', desc: 'Install MathJax dependencies.'},
-                {name: 'uninstall', desc: 'Uninstall MathJax dependencies.'}
-        ]
+mathOptions =
+  desc: packageInfo.description
+  usage: '<argument>'
+  arguments: [
+    {name: 'install', desc: 'Install MathJax dependencies.'},
+    {name: 'uninstall', desc: 'Uninstall MathJax dependencies.'}
+  ]
 
 # The console
 hexo.extend.console.register "math", packageInfo.description, mathOptions, (args, callback) ->
-        cmd = new Command callback
-        cmd.execute args._[0]
+  cmd = new Command hexo, callback
+  cmd.execute args._[0]
 
 # Single Tag
 hexo.extend.tag.register "math", (args, content) ->
-        eq = args.join " "
-        result = "<span>$#{eval('"'+ eq + '"')}$</span>"
-        return result
+  eq = args.join " "
+  result = "<span>$#{eval('"'+ eq + '"')}$</span>"
+  return result
 
 # Block Tag
-hexo.extend.tag.register "math-block", ((args, content) ->
-        result = "<span>$$#{content}$$</span>"
-        return result
-        ), true
+hexo.extend.tag.register "math_block", ((args, content) ->
+  result = "<span>$$#{content}$$</span>"
+  return result
+  ), ends: true

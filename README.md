@@ -10,7 +10,26 @@ A hexo plugin that uses MathJax to render math equations. Features:
 
 ## Migration Note
 
-### From 1.0.4 (Support Hexo 3.0)
+### Migrating to 1.0.6
+
+**!!!IMPORTANT!!!**
+
+Since 1.0.6, hexo-math uses a diffrent approach to inject MathJax into your site. MathJax will be injected on-the-fly and on-demand. This means:
+
+* **You are no longer required to run `hexo math install`**
+* MathJax will not be loaded on pages without math tags allowing faster loading speed.
+
+If you have run `hexo math install` before, please **do run:**
+
+```
+$ hexo math
+```
+
+This will clean up previous installation. Or you can re-install your theme if for some reason this does not work.
+
+
+
+### From 1.0.4 to 1.0.5 (Support Hexo 3.0)
 
 Hexo 3.0 introduces multiple breaking changes. Versions before 1.0.5 won't work with it.
 The following changes are made since 1.0.5 to adapt the new 3.0 API:
@@ -31,19 +50,6 @@ After `hexo-math` is updated, run install again:
 ## Install
 
 > npm install hexo-math --save
-
-## Initialize
-
-* Run in your blog project folder:
-
-> $ hexo math install
-
-* Edit `_config.yml`:
-
-```yaml
-plugins:
-- hexo-math
-```
 
 ## Usage
 

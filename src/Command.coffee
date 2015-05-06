@@ -54,12 +54,13 @@ load = (files, callback) ->
 
 list = (next) ->
   log.info "Layout folder: #{layoutDir}"
-  file.listDir layoutDir, null, (err, files) ->
+  file.listDir layoutDir, (err, files) ->
     if err?
       next? err
-    files = files.filter (f) -> f.match ".*?\.ejs$"
-    log.info "Found #{files.length} layout files"
-    next? null, files
+    layoutFiles = files.filter (f) ->
+      return f.match(".*?\.ejs$") and f.indexOf('math-jax.ejs') < 0
+    log.info "Found #{layoutFiles.length} layout files"
+    next? null, layoutFiles
 
 check = (layouts, next) ->
   deployed = fs.existsSync mathJaxLayoutFile
@@ -69,10 +70,10 @@ check = (layouts, next) ->
     if err?
       next? err
       return
-    injected = true
+    injected = false
     for layout, i in headLayouts
       log.info pad("Injected #{i + 1} of #{headLayouts.length} ", 50) +  " #{yesOrNo(layout.injected)}"
-      if not layout.injected then injected = false
+      if layout.injected then injected = true
     next? null,
       deployed: deployed
       layouts: headLayouts
@@ -109,7 +110,15 @@ inject = (payload, next) ->
     log.info pad("Inject #{results.length} layouts", 50) +  " #{doneOrFail(true)}"
     next? null, null
 
+printMigrationNotice = ->
+  log.info "Since version 1.0.6, hexo-math injects MathJax on-the-fly and on-demand."
+  log.info "You are no longer required to run `hexo math install`."
 
+migrationCheck = (payload, next) ->
+  if payload.deployed or payload.injected
+    log.info "Previouse installation detected. Start cleaning..."
+
+  next? null, payload
 
 remove = (payload, next) ->
   if not payload.deployed and not payload.injected
@@ -161,20 +170,36 @@ module.exports = class Command
 
 
   install: () ->
+    printMigrationNotice()
+    return
+    # async.waterfall [
+    #   list,
+    #   check,
+    #   inject
+    #   ], (err, result) ->
+    #     if err?
+    #       log.error err
+    #     else
+    #       log.info "Done!"
+
+  uninstall: () ->
+    printMigrationNotice()
     async.waterfall [
       list,
       check,
-      inject
+      remove
       ], (err, result) ->
         if err?
           log.error err
         else
           log.info "Done!"
 
-  uninstall: () ->
+  migrate: () ->
+    printMigrationNotice()
     async.waterfall [
       list,
       check,
+      migrationCheck,
       remove
       ], (err, result) ->
         if err?

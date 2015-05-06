@@ -22,15 +22,15 @@ packageInfo = require('../package.json');
 Command = require('./Command');
 
 mathOptions = {
-  desc: packageInfo.description,
+  desc: packageInfo.description + " (IMPORTANT: those commands are deprecated since 1.0.6. Run `hexo math` for migration.)",
   usage: '<argument>',
   "arguments": [
     {
       name: 'install',
-      desc: 'Install MathJax dependencies.'
+      desc: 'Install MathJax dependencies. (deprecated since 1.0.6)'
     }, {
       name: 'uninstall',
-      desc: 'Uninstall MathJax dependencies.'
+      desc: 'Uninstall MathJax dependencies. (deprecated since 1.0.6)'
     }
   ]
 };
@@ -53,7 +53,7 @@ hexo.extend.filter.register("after_render:html", function(src, data) {
 hexo.extend.console.register("math", packageInfo.description, mathOptions, function(args, callback) {
   var cmd;
   cmd = new Command(hexo, callback);
-  return cmd.execute(args._[0]);
+  return cmd.migrate();
 });
 
 hexo.extend.tag.register("math", function(args, content) {

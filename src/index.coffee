@@ -16,11 +16,11 @@ Command = require './Command'
 
 # Options
 mathOptions =
-  desc: packageInfo.description
+  desc: packageInfo.description + " (IMPORTANT: those commands are deprecated since 1.0.6. Run `hexo math` for migration.)"
   usage: '<argument>'
   arguments: [
-    {name: 'install', desc: 'Install MathJax dependencies.'},
-    {name: 'uninstall', desc: 'Uninstall MathJax dependencies.'}
+    {name: 'install', desc: 'Install MathJax dependencies. (deprecated since 1.0.6)'},
+    {name: 'uninstall', desc: 'Uninstall MathJax dependencies. (deprecated since 1.0.6)'}
   ]
 
 assetBase = path.resolve __dirname, '../asset'
@@ -38,7 +38,8 @@ hexo.extend.filter.register "after_render:html", (src, data) ->
 # The console
 hexo.extend.console.register "math", packageInfo.description, mathOptions, (args, callback) ->
   cmd = new Command hexo, callback
-  cmd.execute args._[0]
+  # cmd.execute args._[0]
+  cmd.migrate()
 
 # Single Tag
 hexo.extend.tag.register "math", (args, content) ->

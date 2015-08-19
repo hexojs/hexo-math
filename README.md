@@ -35,14 +35,29 @@ $$\frac{\partial u}{\partial t}
 \frac{\partial^2 u}{\partial z^2}\right)$$
 ```
 
-**Tag inline:**
+**Tag:**
 
+Single line content will be parsed as inline math (same as `$...$`):
 ```markdown
-This equation {% math \cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1 %} is inline.
+This equation {% math %}\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1 {% endmath %} is inline.
 ```
 
-**Tag Block:**
+Multiple line content will be parsed as block math (same as `$$...$$`)
 ```markdown
+{% math %}
+\begin{aligned}
+\dot{x} & = \sigma(y-x) \\
+\dot{y} & = \rho x - y - xz \\
+\dot{z} & = -\beta z + xy
+\end{aligned}
+{% endmath %}
+```
+
+> **Deprecated since 2.0.0**
+
+>**Tag Block:**
+
+>```markdown
 {% math_block %}
 \begin{aligned}
 \dot{x} & = \sigma(y-x) \\
@@ -51,7 +66,26 @@ This equation {% math \cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \
 \end{aligned}
 {% endmath_block %}
 ```
+
 ## Migration Note
+
+### Migrating to 2.0.0
+
+* `math_block` is deprecated (but still usable. This won't break your site)
+* `math` block is used to handle both inline and block math due to breaking changes made since Hexo 3.x. (This will break your site if you're using `math` block)
+
+Since Hexo 3.x, nunjucks is used as tag engine instead of swig. Syntax like this won't work any more:
+
+```markdown
+{% math \frac{|ax + by + c|}{\sqrt{a^{2}+b^{2}}} %}
+```
+
+Instead, you should use open and close tag since this version:
+```markdown
+{% math %}\frac{|ax + by + c|}{\sqrt{a^{2}+b^{2}}} {% endmath %}
+```
+
+Change all your `math` tags accordingly.
 
 ### Migrating to 1.0.6
 

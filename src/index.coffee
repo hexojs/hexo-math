@@ -47,10 +47,13 @@ hexo.extend.console.register "math", packageInfo.description, mathOptions, (args
   cmd.migrate()
 
 # Single Tag
-hexo.extend.tag.register "math", (args, content) ->
-  eq = args.join " "
-  result = "<span>$#{eq}$</span><!-- Has MathJax -->"
+hexo.extend.tag.register "math", ((args, content) ->
+  if /\n/.test content
+    result = "<span>$$#{content}$$</span><!-- Has MathJax -->"
+  else
+    result = "<span>$#{content}$</span><!-- Has MathJax -->"
   return result
+  ), ends: true
 
 warn = (message) ->
   console.warn "#{"WARN".yellow} #{message}"

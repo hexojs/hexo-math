@@ -62,11 +62,16 @@ hexo.extend.console.register("math", packageInfo.description, mathOptions, funct
   return cmd.migrate();
 });
 
-hexo.extend.tag.register("math", function(args, content) {
-  var eq, result;
-  eq = args.join(" ");
-  result = "<span>$" + eq + "$</span><!-- Has MathJax -->";
+hexo.extend.tag.register("math", (function(args, content) {
+  var result;
+  if (/\n/.test(content)) {
+    result = "<span>$$" + content + "$$</span><!-- Has MathJax -->";
+  } else {
+    result = "<span>$" + content + "$</span><!-- Has MathJax -->";
+  }
   return result;
+}), {
+  ends: true
 });
 
 warn = function(message) {

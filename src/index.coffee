@@ -27,10 +27,15 @@ assetBase = path.resolve __dirname, '../asset'
 
 injectSrc = fs.readFileSync path.resolve assetBase, 'math-jax.ejs'
 
+inlineMathRegex = /\$.*\$/
+blockMathRegex = /^\s*\$\$[\s\S]*\$\$\s*$/m
+
 hexo.extend.filter.register "after_render:html", (src, data) ->
   insertPos = src.indexOf("</body>")
   hasBody = insertPos >= 0
-  hasMath = src.indexOf("<!-- Has MathJax -->") >= 0
+  hasInline = inlineMathRegex.test(src)
+  hasBlock = blockMathRegex.test(src)
+  hasMath = src.indexOf("<!-- Has MathJax -->") >= 0 or hasInline or hasBlock
   if hasBody and hasMath
     return src.substr(0, insertPos) + injectSrc + src.substr(insertPos)
   return src;
@@ -43,7 +48,6 @@ hexo.extend.console.register "math", packageInfo.description, mathOptions, (args
 
 # Single Tag
 hexo.extend.tag.register "math", (args, content) ->
-  console.log content
   eq = args.join " "
   result = "<span>$#{eq}$</span><!-- Has MathJax -->"
   return result

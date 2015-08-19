@@ -52,8 +52,11 @@ hexo.extend.tag.register "math", (args, content) ->
   result = "<span>$#{eq}$</span><!-- Has MathJax -->"
   return result
 
+warn = (message) ->
+  console.warn "#{"WARN".yellow} #{message}"
 # Block Tag
 hexo.extend.tag.register "math_block", ((args, content) ->
+  warn "'math_block' tag is deprecated since hexo-math 2.0. Use 'math' block instead."
   result = "<span>$$#{content}$$</span><!-- Has MathJax -->"
   return result
   ), ends: true

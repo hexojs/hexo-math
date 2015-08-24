@@ -1,0 +1,10 @@
+<p>This equation <span>$\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$</span><!-- Has MathJax --> is inline.<br>This used to cause problem: <span>$\frac{|ax + by + c|}{\sqrt{a^{2}+b^{2}}}$</span><!-- Has MathJax -->.</p>
+<p>This should be rendered as block:<br><span>$$\frac{\partial u}{\partial t}
+= h^2 \left( \frac{\partial^2 u}{\partial x^2} +
+\frac{\partial^2 u}{\partial y^2} +
+\frac{\partial^2 u}{\partial z^2}\right)$$</span><!-- Has MathJax --></p>
+<p>Deprecated <code>math_block</code> tag<br><span>$$\begin{aligned}
+\dot{x} & = \sigma(y-x) \\
+\dot{y} & = \rho x - y - xz \\
+\dot{z} & = -\beta z + xy
+\end{aligned}$$</span><!-- Has MathJax --></p>

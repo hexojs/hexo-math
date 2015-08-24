@@ -1,0 +1,1 @@
+<p>$$\frac{\partial u}{\partial t}<br>= h^2 \left( \frac{\partial^2 u}{\partial x^2} +<br>\frac{\partial^2 u}{\partial y^2} +<br>\frac{\partial^2 u}{\partial z^2}\right)$$</p>

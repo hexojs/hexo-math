@@ -123,3 +123,26 @@ Before you update `hexo-math` to newer version, you should run:
 After `hexo-math` is updated, run install again:
 
 > $ hexo math install
+
+
+## Development
+
+### Test
+
+To run the test suit, first you should install dependencies for the test site:
+
+```bash
+> $ cd .test-site
+> $ npm install
+```
+
+Then run `npm test` from `hexo-math`'s root dir.
+
+#### Add post specs
+
+In `.test-site/source/_post` folder, add a pair of file for each test cases:
+
+* [test-case-name].md
+* [test-case-name].md.expected
+
+The `.md` file contains the Markdown source of a post and the `.expected` file contains expected HTML rendered from the source.

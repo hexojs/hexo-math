@@ -1,0 +1,6 @@
+<p>This test case is to address issue #7:</p>
+<ul>
+<li><span>$|a|&lt;1$</span><!-- Has MathJax --></li>
+<li><span>$\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$</span><!-- Has MathJax -->
+</li>
+</ul>

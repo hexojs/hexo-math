@@ -33,6 +33,7 @@
     "graceful-fs": "*",
     "hexo-fs": "^0.1.3",
     "hexo-util": "~0.1.6",
+    "html-entities": "^1.1.3",
     "path": "*",
     "request": "*",
     "url": "*"

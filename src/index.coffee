@@ -9,6 +9,8 @@ async = require 'async'
 colors = require 'colors'
 fs = require 'hexo-fs'
 path = require 'path'
+Entities = require('html-entities').AllHtmlEntities
+entities = new Entities()
 
 # Local
 packageInfo = require '../package.json'
@@ -31,6 +33,7 @@ hexo.extend.filter.register "after_render:html", (src, data) ->
 
 # Single Tag
 hexo.extend.tag.register "math", ((args, content) ->
+  content = entities.encode(content)
   if /\n/.test content
     result = "<span>$$#{content}$$</span><!-- Has MathJax -->"
   else

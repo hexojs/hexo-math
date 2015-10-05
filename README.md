@@ -147,7 +147,7 @@ In `.test-site/source/_post` folder, add a pair of file for each test cases:
 
 The `.md` file contains the Markdown source of a post and the `.expected` file contains expected HTML rendered from the source.
 
-If a test case is added to address certian issues, the issue id should be added to the `.md`'s front matter section:
+If a test case is added to address certain issues, the issue id should be added to the `.md`'s front matter section:
 
 ```markdown
 title: "Tag Escpae"

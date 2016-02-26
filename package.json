@@ -8,7 +8,8 @@
     "url": "https://github.com/akfish/hexo-math.git"
   },
   "scripts": {
-    "test": "node test-runner.js"
+    "pretest": "gulp clean:test && gulp asset:test",
+    "test": "gulp test"
   },
   "keywords": [
     "website",
@@ -19,29 +20,25 @@
     "mathjax"
   ],
   "author": "AKFish <akfish@gmail.com> (http://catx.me)",
-  "license": {
-    "type": "GPLv2",
-    "url": "https://raw.github.com/akfish/hexo-math/master/LICENSE"
-  },
-  "engines": {
-    "hexo": "*"
-  },
+  "license": "MIT",
   "dependencies": {
-    "async": "*",
-    "bluebird": "^2.9.34",
-    "colors": "*",
-    "graceful-fs": "*",
-    "hexo-fs": "^0.1.3",
-    "hexo-util": "~0.1.6",
-    "html-entities": "^1.1.3",
-    "path": "*",
-    "request": "*",
-    "url": "*"
+    "hexo-fs": "^0.1.5",
+    "html-entities": "^1.1.3"
   },
   "devDependencies": {
-    "chai": "^3.2.0",
-    "coffee-script": "^1.9.3",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-register": "^6.5.2",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
+    "coffee-script": "^1.10.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-heap": "^2.0.0-alpha.1",
+    "gulp-mocha": "^2.2.0",
     "hexo": "^3.1.1",
+    "hexo-util": "^0.5.3",
     "mocha": "^2.2.5"
   }
 }

@@ -22,9 +22,14 @@ describe "hexo-math", ->
 
   describe "'math' tag", ->
     { tag } = mathJax
-    it "should escape HTML entities"
-    it "should return inline math for single line input"
-    it "should return block math for multiple line input"
+    transform = tag._transform.bind(tag, null)
+    it "should escape HTML entities", ->
+      expect(transform("|a|<1")).to.equal("<span>$|a|&lt;1$</span><!-- Has MathJax -->")
+
+    it "should return inline math for single line input", ->
+      expect(transform("a+b=1")).to.equal("<span>$a+b=1$</span><!-- Has MathJax -->")
+    it "should return block math for multiple line input", ->
+      expect(transform("a+b=1\nc+d=2")).to.equal("<span>$$a+b=1\nc+d=2$$</span><!-- Has MathJax -->")
 
   describe "Injector", ->
     { script, injector } = mathJax

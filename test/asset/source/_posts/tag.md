@@ -12,12 +12,3 @@ This should be rendered as block:
 \frac{\partial^2 u}{\partial y^2} +
 \frac{\partial^2 u}{\partial z^2}\right)
 {% endmath %}
-
-Deprecated `math_block` tag
-{% math_block %}
-\begin{aligned}
-\dot{x} & = \sigma(y-x) \\
-\dot{y} & = \rho x - y - xz \\
-\dot{z} & = -\beta z + xy
-\end{aligned}
-{% endmath_block %}

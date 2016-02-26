@@ -23,3 +23,7 @@ module.exports = ->
         stdio: 'inherit'
       spawn('npm', ['install', '--production'], args)
     )
+
+  gulp.task 'asset:deploy', ->
+    console.log("Copying assets...")
+    fs.copyDir(asset_dir, site_dir)

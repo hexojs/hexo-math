@@ -1,26 +1,31 @@
 path = require('path')
-hexoMathJax = require('../src')
+MathJax = require('../src/main')
 
 module.exports =
   # Note: somewhere in hexo's packages there's a global leak.
   # Disabled mocha's leak checking for now
-  initHexo: (name, registerExtension = true) ->
+  initHexo: ->
     site_dir = "./test/site"
     if !fs.existsSync(site_dir) then throw new Error("Test site not found. Run `gulp asset:test` first.")
-    base_dir = path.join(__dirname, name)
+    base_dir = path.join(__dirname, "site")
     hexo = new Hexo(base_dir, silent: true)
-    generator = new hexoMathJax(hexo)
-    if registerExtension
-      generator.register()
+    mathJax = new MathJax(hexo)
+    mathJax.register()
+
+    hexo.extend.filter.register 'after_post_render', (data) ->
+      expected_file = path.join(base_dir, "/source/#{data.source}.expected")
+      if fs.existsSync(expected_file)
+        data.expected = fs.readFileSync(expected_file)
+      return data
 
     setup = ->
-      fs.copyDir(site_dir, base_dir).then(-> hexo.init())
+      hexo.init().then(-> hexo.call('generate', {}))
     teardown = ->
-      fs.rmdir(base_dir)
+      hexo.call('clean', {})
 
     return {
-      generator,
       base_dir,
+      mathJax
       hexo,
       setup,
       teardown

@@ -3,8 +3,3 @@
 = h^2 \left( \frac{\partial^2 u}{\partial x^2} +
 \frac{\partial^2 u}{\partial y^2} +
 \frac{\partial^2 u}{\partial z^2}\right)$$</span><!-- Has MathJax --></p>
-<p>Deprecated <code>math_block</code> tag<br><span>$$\begin{aligned}
-\dot{x} & = \sigma(y-x) \\
-\dot{y} & = \rho x - y - xz \\
-\dot{z} & = -\beta z + xy
-\end{aligned}$$</span><!-- Has MathJax --></p>

@@ -72,6 +72,17 @@ describe "hexo-math", ->
       expect(injected.indexOf(src)).to.be.below(0)
 
   describe "Script", ->
-    { script } = mathJax.script
-    it "should use DEFAULT_OPTS by default"
-    it "should use custom options in _config.yml"
+    { script } = mathJax
+    { DEFAULT_OPTS, TEMPLATE } = consts
+    t = _.template(TEMPLATE)
+    it "should use DEFAULT_OPTS by default", ->
+      expect(script.src).to.equal(t(DEFAULT_OPTS))
+    it "should use custom options in _config.yml", ->
+      CONFIG =
+        src: "//catx.me/mathjax.js",
+        config:
+          foo: "bar"
+
+      hexo.config.mathjax = CONFIG
+
+      expect(script.src).to.equal(t(_.defaults(CONFIG, DEFAULT_OPTS)))

@@ -1,4 +1,4 @@
-hexo-math
+hexo-math [![Build Status](https://travis-ci.org/akfish/hexo-math.svg?branch=master)](https://travis-ci.org/akfish/hexo-math)
 ===================
 
 A hexo plugin that uses MathJax to render math equations. Features:
@@ -14,6 +14,36 @@ A hexo plugin that uses MathJax to render math equations. Features:
 > npm install hexo-math --save
 
 See [Migration Note](#migration-note) if you are upgrading from an older version.
+
+## Config
+
+In your site's `_config.yml`:
+
+```yaml
+mathjax:
+  src: custom_mathjax_source
+  config:
+    # MathJax config
+```
+
+Your config will be merged into default config:
+```js
+const DEFAULT_OPTS = {
+  src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
+  config: {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+      processEscapes: true
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  }
+}
+```
 
 ## Usage
 
@@ -68,6 +98,10 @@ Multiple line content will be parsed as block math (same as `$$...$$`)
 ```
 
 ## Migration Note
+
+### Migrating to 2.1.0
+
+* `math_block` is removed
 
 ### Migrating to 2.0.0
 

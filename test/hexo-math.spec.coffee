@@ -1,5 +1,7 @@
 util = require('./util')
 path = require('path')
+_ = require('underscore')
+consts = require('../src/consts')
 
 describe "hexo-math", ->
   h = {hexo, base_dir, mathJax } = util.initHexo('test_generator_clean')
@@ -25,10 +27,44 @@ describe "hexo-math", ->
     it "should return block math for multiple line input"
 
   describe "Injector", ->
-    { injector } = mathJax
-    it "should inject only if </body> tag is present"
-    it "should inject if there are math equations in the page"
-    it "should not inject if there is no math equations in the page"
+    { script, injector } = mathJax
+    { src } = script
+    buildHtml = (opts) ->
+      defaults =
+        content: consts.MATH_MARKER
+        body: "body"
+        end: ""
+      { content, body, end } = _.defaults({}, opts, defaults)
+      _body = __body = ""
+      if body != ""
+        _body = "<#{body}>"
+        __body = "</#{body}>"
+      "<!doctype html><html>#{_body}#{content}#{end}#{__body}</html>"
+
+    HTML_NO_BODY = buildHtml(body: "")
+    HTML_NO_MATH = buildHtml(content: "")
+
+    HAS_MATH_OPTS = [
+      {},
+      {body: "BODY"},
+      {content: "$ math here $"},
+      {content: "$$ math \nhere\n too $$"}
+    ]
+    HTML_HAS_MATHS = HAS_MATH_OPTS.map buildHtml
+
+    it "should inject only if </body> tag is present", ->
+      injected = injector._transform(HTML_NO_BODY)
+      expect(injected.indexOf(src)).to.be.below(0)
+
+    it "should inject if there are math equations in the page", ->
+      expected = HAS_MATH_OPTS.map (o) -> buildHtml _.extend(o, end: src)
+      expected.forEach (exp, i) ->
+        actual = injector._transform(HTML_HAS_MATHS[i])
+        expect(actual).to.equal(exp)
+
+    it "should not inject if there is no math equations in the page", ->
+      injected = injector._transform(HTML_NO_MATH)
+      expect(injected.indexOf(src)).to.be.below(0)
 
   describe "Script", ->
     { script } = mathJax.script

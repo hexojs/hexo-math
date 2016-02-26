@@ -1,6 +1,6 @@
 export const INLINE_MATH_REGEX = /\$.*?\$/;
 export const BLOCK_MATH_REGEX = /^\s*\$\$[\s\S]*\$\$\s*$/m;
-export const INJECTION_REGEX = /([\s\S]*)(<\/body>[\s\S]*)/;
+export const INJECTION_REGEX = /([\s\S]*)(<\/body>[\s\S]*)/i;
 export const BODY_REGEX = /<\/body>/i;
 
 export const MATH_MARKER = "<!-- Has MathJax -->";

@@ -11,7 +11,7 @@ export default class MathTag {
     tag.register("math", this._transform.bind(this), { ends: true });
   }
   _transform(args, content) {
-    content = entities.encode(content);
+    content = entities.encode(content.trim());
     let multiLine = /\n/.test(content);
 
     return multiLine ? `<span>$$${content}$$</span>${MATH_MARKER}`

@@ -15,7 +15,6 @@ export default class MathTag {
     tag.register("math", this._transform.bind(this), { ends: true });
   }
   _transform(args, content) {
-    content = entities.encode(content.trim());
     let multiLine = /\n/.test(content);
 
     const transformers = {
@@ -25,10 +24,12 @@ export default class MathTag {
     return transformers[this.opts.engine](content, multiLine)
   }
   _mathJax(content, multiLine) {
+    content = entities.encode(content.trim());
     return multiLine ? `<span>$$${content}$$</span>${MATH_MARKER}`
                      : `<span>$${content}$</span>${MATH_MARKER}`;
   }
   _kaTeX(content, multiLine) {
+    content = entities.decode(content.trim());
     let opts = _.extend({}, this.opts.katex, { displayMode: multiLine })
 
     return katex.renderToString(content, opts)

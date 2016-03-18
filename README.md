@@ -1,15 +1,24 @@
 hexo-math [![Build Status](https://travis-ci.org/akfish/hexo-math.svg?branch=master)](https://travis-ci.org/akfish/hexo-math)
 ===================
 
-A hexo plugin that uses MathJax to render math equations. Features:
+A hexo plugin that uses MathJax/KaTeX to render math equations. Features:
 
-* Automatcially deploy and add reference to MathJax
-* Provide support to both MathJax's inline math syntax and math tags
+* Dynamic MathJax/KaTeX injection on demand
+* Provide support to both inline math syntax and math tags
+* Server-side rendering with KaTeX (new in 3.0.0)
 
-<del>(See a Chinese version of this document [here](http://blog.catx.me/2014/03/09/hexo-mathjax-plugin/))</del> *Information in that post is out-dated*
+## New in 3.0.0: Server-side rendering with KaTeX
+
+Since 3.0.0, hexo-math uses [KaTeX](https://github.com/Khan/KaTeX) as default math rendering engine.
+
+It has serval advantages over MathJax:
+
+* Server-side rendering
+* Faster and smaller
+
+It supports less commands than MathJax. Check out [this list](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX) for more information.
 
 ## Install
-
 
 > npm install hexo-math --save
 
@@ -20,43 +29,61 @@ See [Migration Note](#migration-note) if you are upgrading from an older version
 In your site's `_config.yml`:
 
 ```yaml
-mathjax:
-  src: custom_mathjax_source
-  config:
-    # MathJax config
+math:
+  engine: 'katex' # or 'mathjax'
+  mathjax:
+    src: custom_mathjax_source
+    config:
+      # MathJax config
+  katex:
+    css: custom_css_source
+    js: custom_js_source # not used
+    config:
+      # KaTeX config
 ```
 
 Your config will be merged into default config:
 ```js
 const DEFAULT_OPTS = {
-  src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
-  config: {
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-      processEscapes: true
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
+  engine: 'katex',
+  mathjax: {
+    src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
+    config: {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        processEscapes: true
+      },
+      TeX: {
+        equationNumbers: {
+          autoNumber: "AMS"
+        }
       }
     }
-  }
+  },
+  katex: {
+    css: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css",
+    js: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js",
+    config: {
+      throwOnError: false,
+      errorColor: "#cc0000"
+    }
+  }  
 }
 ```
 
 ## Usage
 
-You can use MathJax's inline math syntax directly. But always remember to escape any special characters by adding a ```\``` before it.
+You can use inline math syntax directly. But always remember to escape any special characters by adding a ```\``` before it.
 LaTex equations usually contains tones of special characters like ```\```, which makes it painful to escape them one by one. In such cases, you can use hexo-math's tags to make your life easier.
 
-**MathJax Inline:**
+**Inline:**
 
 ```markdown
 Simple inline $a = b + c$.
 ```
 
-**MathJax Block:**
+**Block:**
 
 ```markdown
 $$\frac{\partial u}{\partial t}
@@ -98,6 +125,10 @@ Multiple line content will be parsed as block math (same as `$$...$$`)
 ```
 
 ## Migration Note
+
+### Migrating to 3.0.0
+
+* `mathjax` should be moved under `math` section in your `_config.yml`
 
 ### Migrating to 2.1.0
 

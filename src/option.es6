@@ -1,7 +1,7 @@
 import _ from 'underscore'
 
 export const DEFAULT_OPTS = {
-  engine: 'mathjax',
+  engine: 'katex',
   mathjax: {
     src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
     config: {

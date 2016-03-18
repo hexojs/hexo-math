@@ -1,6 +1,8 @@
 import { BLOCK_MATH_RENDER_REGEX, INLINE_MATH_RENDER_REGEX } from '../consts'
+import { AllHtmlEntities } from "html-entities";
 import katex from 'katex'
 import _ from 'underscore'
+const entities = new AllHtmlEntities()
 
 export default class Post {
   constructor (hexo, opts) {
@@ -20,6 +22,6 @@ export default class Post {
   _render (math, isBlock) {
     let opts = _.extend({}, this.opts.katex, { displayMode: isBlock })
 
-    return katex.renderToString(math, opts)
+    return katex.renderToString(entities.decode(math), opts)
   }
 }

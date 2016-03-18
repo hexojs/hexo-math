@@ -10,6 +10,7 @@
   "scripts": {
     "prepublish": "gulp clean && gulp es6",
     "pretest": "gulp clean:test && gulp asset:test",
+    "postinstall": "npm install --save hexo-inject",
     "test": "gulp test"
   },
   "keywords": [

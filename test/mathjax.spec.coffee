@@ -3,8 +3,8 @@ path = require('path')
 _ = require('underscore')
 consts = require('../src/consts')
 
-describe "hexo-math", ->
-  h = {hexo, base_dir, mathJax } = util.initHexo('test_generator_clean')
+describe "MathJax", ->
+  h = {hexo, base_dir, mathJax } = util.initHexo('mathjax')
 
   before ->
     this.timeout(0)
@@ -17,8 +17,8 @@ describe "hexo-math", ->
   it "should pass all test posts", ->
     posts = hexo.locals.toObject().posts.data
     posts.forEach (post) ->
-      if not post.expected? then return
-      expect(post.content, post.title).to.equal(post.expected)
+      if not post.mathjax_expected? then return
+      expect(post.content, post.title).to.equal(post.mathjax_expected)
 
   describe "'math' tag", ->
     { tag } = mathJax

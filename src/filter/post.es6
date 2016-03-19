@@ -15,13 +15,20 @@ export default class Post {
     filter.register('before_post_render', this._transform.bind(this))
   }
   _transform (data) {
-    data.content = data.content.replace(BLOCK_MATH_RENDER_REGEX, (m, math) => this._render(math, true))
-    data.content = data.content.replace(INLINE_MATH_RENDER_REGEX, (m, math) => this._render(math, false))
+    data.content = data.content.replace(BLOCK_MATH_RENDER_REGEX, (m, math) => this._render(m, math, true))
+    data.content = data.content.replace(INLINE_MATH_RENDER_REGEX, (m, math) => this._render(m, math, false))
     return data
   }
-  _render (math, isBlock) {
-    let opts = _.extend({}, this.opts.katex, { displayMode: isBlock })
+  _render (match, math, isBlock) {
+    let opts = _.extend({}, this.opts.katex.config, { displayMode: isBlock })
 
-    return katex.renderToString(entities.decode(math), opts)
+    try {
+      return katex.renderToString(entities.decode(math), opts)
+
+    } catch (e) {
+      this.hexo.log.error(e)
+    }
+
+    return match
   }
 }

@@ -30,8 +30,14 @@ export default class MathTag {
   }
   _kaTeX(content, multiLine) {
     content = entities.decode(content.trim());
-    let opts = _.extend({}, this.opts.katex, { displayMode: multiLine })
+    let opts = _.extend({}, this.opts.katex.config, { displayMode: multiLine })
 
-    return katex.renderToString(content, opts)
+    try {
+        return katex.renderToString(content, opts)
+    } catch (e) {
+      this.hexo.log.error(e)
+    }
+
+    return content
   }
 }

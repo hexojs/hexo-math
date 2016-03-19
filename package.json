@@ -1,7 +1,7 @@
 {
   "name": "hexo-math",
-  "version": "3.0.0-alpha2",
-  "description": "Add MathJax support to hexo",
+  "version": "3.0.0-alpha3",
+  "description": "Add math support to hexo",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
     "prepublish": "gulp clean && gulp es6",
     "pretest": "gulp clean:test && gulp asset:test",
     "postinstall": "cd ../.. && npm install --save hexo-inject",
-    "test": "gulp test"
+    "test": "gulp test --debug"
   },
   "keywords": [
     "website",
@@ -43,6 +43,7 @@
     "hexo": "^3.1.1",
     "hexo-fs": "^0.1.5",
     "hexo-util": "^0.5.3",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "underscore": "^1.8.3"
   }
 }

@@ -71,5 +71,15 @@
       "force": false,
       "dryRun": false
     }
+  },
+  "cli:default": {
+    "opts": {
+      "mapping": {
+        "es6:default": {},
+        "GLOBAL": {
+          "sourceMap": "debug"
+        }
+      }
+    }
   }
 }

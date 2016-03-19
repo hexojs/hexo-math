@@ -14,16 +14,11 @@ module.exports =
     mathJax.register()
 
     hexo.extend.filter.register 'after_post_render', (data) ->
-      expected_mathjax_file = path.join(base_dir, "/source/#{data.source.replace('_posts', '_expected/mathjax')}.expected")
-      expected_katex_file = path.join(base_dir, "/source/#{data.source.replace('_posts', '_expected/katex')}.expected")
-      if fs.existsSync(expected_mathjax_file)
-        data.mathjax_expected = fs.readFileSync(expected_mathjax_file)
+      expected_file = path.join(base_dir, "/source/#{data.source.replace('_posts', "_expected/#{engine}")}.expected")
+      if fs.existsSync(expected_file)
+        data["#{engine}_expected"] = fs.readFileSync(expected_file)
       else
-        console.warn('Test file does not exist: ', expected_mathjax_file)
-      if fs.existsSync(expected_katex_file)
-        data.katex_expected = fs.readFileSync(expected_katex_file)
-      else
-        console.warn('Test file does not exist: ', expected_katex_file)
+        console.warn('Test file does not exist: ', expected_file)
       return data
 
     setup = ->

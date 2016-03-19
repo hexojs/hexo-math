@@ -15,6 +15,6 @@ export default class MathJax {
     let { tag, injector, post } = this;
     tag.register();
     injector.register();
-    post.register();
+    // post.register();
   }
 }

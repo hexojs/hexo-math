@@ -9,14 +9,16 @@ A hexo plugin that uses MathJax/KaTeX to render math equations. Features:
 
 ## New in 3.0.0: Server-side rendering with KaTeX
 
-Since 3.0.0, hexo-math uses [KaTeX](https://github.com/Khan/KaTeX) as default math rendering engine.
+Since 3.0.0, hexo-math added support to [KaTeX](https://github.com/Khan/KaTeX) .
 
 It has serval advantages over MathJax:
 
 * Server-side rendering
 * Faster and smaller
 
-It supports less commands than MathJax. Check out [this list](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX) for more information.
+Current limitations are:
+* It supports less commands than MathJax. Check out [this list](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX) for more information.
+* hexo-math will only render math tags with KaTeX
 
 ## Install
 
@@ -30,7 +32,7 @@ In your site's `_config.yml`:
 
 ```yaml
 math:
-  engine: 'katex' # or 'mathjax'
+  engine: 'mathjax' # or 'katex'
   mathjax:
     src: custom_mathjax_source
     config:
@@ -45,7 +47,7 @@ math:
 Your config will be merged into default config:
 ```js
 const DEFAULT_OPTS = {
-  engine: 'katex',
+  engine: 'mathjax',
   mathjax: {
     src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
     config: {

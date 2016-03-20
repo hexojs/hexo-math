@@ -1,4 +1,4 @@
-export const INLINE_MATH_REGEX = /\$[\s\S]?\$/;
+export const INLINE_MATH_REGEX = /\$[\s\S]+?\$/;
 export const BLOCK_MATH_REGEX = /^\s*\$\$[\s\S]*\$\$\s*$/m;
 export const INLINE_MATH_RENDER_REGEX = /\$([^\n]+?)\$/g;
 export const BLOCK_MATH_RENDER_REGEX = /\$\$([\s\S]+?)\$\$/g;

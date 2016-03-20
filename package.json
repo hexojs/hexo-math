@@ -1,6 +1,6 @@
 {
   "name": "hexo-math",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Add math support to hexo",
   "main": "lib/index.js",
   "repository": {

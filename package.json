@@ -10,7 +10,7 @@
   "scripts": {
     "prepublish": "gulp clean && gulp es6",
     "pretest": "gulp clean:test && gulp asset:test",
-    "postinstall": "cd ../.. && npm install --save hexo-inject",
+    "postinstall": "cd ../.. && if [ ! -f yarn.lock ]; then npm install --save hexo-inject; else yarn add hexo-inject; fi",
     "test": "gulp test --debug"
   },
   "keywords": [

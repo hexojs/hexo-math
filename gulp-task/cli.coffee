@@ -1,5 +1,3 @@
-_ = require('underscore')
-
 module.exports = (profile = "default") ->
   cfg = config["cli:" + profile]
   mappings = cfg.opts.mapping

@@ -1,7 +1,7 @@
 import { AllHtmlEntities } from "html-entities";
 import { MATH_MARKER } from "../consts";
 import katex from 'katex';
-import _ from 'underscore';
+import _ from 'lodash';
 
 const entities = new AllHtmlEntities()
 

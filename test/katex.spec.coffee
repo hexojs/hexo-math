@@ -1,6 +1,5 @@
 util = require('./util')
 path = require('path')
-_ = require('underscore')
 consts = require('../src/consts')
 
 describe "KaTeX", ->

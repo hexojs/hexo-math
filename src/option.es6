@@ -41,6 +41,7 @@ export function getOptions ({ config, log }, opts) {
   opts = _.defaultsDeep({}, opts, config.math, DEFAULT_OPTS)
 
   if (ENGINES.indexOf(opts.engine) < 0) throw new TypeError(`hexo-math does not support engine named 'opts.engine'`)
+  if (/\.js$/.test(opts.mathjax.src)) opts.mathjax.src += '?config=TeX-AMS-MML_HTMLorMML'
 
   log.info(`[hexo-math] Using engine '${opts.engine}'`)
 

@@ -217,7 +217,7 @@ The `.md` file contains the Markdown source of a post and the `.expected` file c
 If a test case is added to address certain issues, the issue id should be added to the `.md`'s front matter section:
 
 ```markdown
-title: "Tag Escpae"
+title: "Tag Escape"
 date: 2015-04-21 02:47:19
 tags:
 issues:

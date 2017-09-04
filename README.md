@@ -1,4 +1,4 @@
-hexo-math [![Build Status](https://travis-ci.org/akfish/hexo-math.svg?branch=master)](https://travis-ci.org/akfish/hexo-math)
+hexo-math [![Build Status](https://travis-ci.org/hexojs/hexo-math.svg?branch=master)](https://travis-ci.org/hexojs/hexo-math)
 ===================
 
 A hexo plugin that uses MathJax/KaTeX to render math equations. Features:

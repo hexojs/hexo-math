@@ -1,4 +1,4 @@
-hexo-math [![Build Status](https://travis-ci.org/akfish/hexo-math.svg?branch=master)](https://travis-ci.org/akfish/hexo-math)
+hexo-math [![Build Status](https://travis-ci.org/hexojs/hexo-math.svg?branch=master)](https://travis-ci.org/hexojs/hexo-math)
 ===================
 
 A hexo plugin that uses MathJax/KaTeX to render math equations. Features:
@@ -158,7 +158,7 @@ Change all your `math` tags accordingly.
 
 **!!!IMPORTANT!!!**
 
-Since 1.0.6, hexo-math uses a diffrent approach to inject MathJax into your site. MathJax will be injected on-the-fly and on-demand. This means:
+Since 1.0.6, hexo-math uses a different approach to inject MathJax into your site. MathJax will be injected on-the-fly and on-demand. This means:
 
 * **You are no longer required to run `hexo math install`**
 * MathJax will not be loaded on pages without math tags allowing faster loading speed.

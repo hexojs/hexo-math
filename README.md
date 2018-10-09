@@ -49,7 +49,7 @@ Your config will be merged into default config:
 const DEFAULT_OPTS = {
   engine: 'mathjax',
   mathjax: {
-    src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
+    src: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js",
     config: {
       tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],

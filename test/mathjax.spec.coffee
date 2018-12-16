@@ -24,9 +24,9 @@ describe "MathJax", ->
     { tag } = mathJax
     transform = tag._transform.bind(tag, null)
     it "should escape HTML entities", ->
-      expect(transform("|a|<1")).to.equal("<span>$|a|&lt;1$</span><!-- Has MathJax -->")
+      expect(transform("|a|<1")).to.equal("<div>$|a|&lt;1$</div><!-- Has MathJax -->")
 
     it "should return inline math for single line input", ->
-      expect(transform("a+b=1")).to.equal("<span>$a+b=1$</span><!-- Has MathJax -->")
+      expect(transform("a+b=1")).to.equal("<div>$a+b=1$</div><!-- Has MathJax -->")
     it "should return block math for multiple line input", ->
-      expect(transform("a+b=1\nc+d=2")).to.equal("<span>$$a+b=1\nc+d=2$$</span><!-- Has MathJax -->")
+      expect(transform("a+b=1\nc+d=2")).to.equal("<div>$$a+b=1\nc+d=2$$</div><!-- Has MathJax -->")

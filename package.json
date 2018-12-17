@@ -36,6 +36,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
     "coffee-script": "^1.10.0",
+    "coffeescript": "^2.3.2",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",

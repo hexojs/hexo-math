@@ -11,7 +11,7 @@
     "prepublish": "gulp clean && gulp es6",
     "pretest": "gulp clean:test && gulp asset:test",
     "postinstall": "cd ../.. && npm install --save hexo-inject",
-    "test": "gulp test --debug"
+    "test": "gulp test --inspect"
   },
   "keywords": [
     "website",

@@ -26,7 +26,7 @@
   "mocha:default": {
     "taskName": "test",
     "src": [
-      "./test/**/*.spec.coffee"
+      "./test/**/*.spec.js"
     ],
     "opts": {
       "ui": "bdd",
@@ -38,7 +38,7 @@
         "fs"
       ],
       "require": [
-        "./test/scaffolds.coffee"
+        "./test/scaffolds.js"
       ],
       "grep": "",
       "timeout": 2000,
@@ -53,7 +53,7 @@
         {
           "targets": [
             "./src/**/*.es6",
-            "./test/**/*.spec.coffee"
+            "./test/**/*.spec.js"
           ],
           "actions": [
             "test"
@@ -76,7 +76,7 @@
     "opts": {
       "mapping": {
         "es6:default": {},
-        "GLOBAL": {
+        "global": {
           "sourceMap": "debug"
         }
       }

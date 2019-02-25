@@ -1,4 +1,4 @@
-require('babel-register');
+require('@babel/register');
 
 global.Hexo = require('hexo');
 

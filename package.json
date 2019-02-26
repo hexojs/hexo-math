@@ -12,7 +12,10 @@
     "clean:build": "rimraf lib",
     "clean:test": "rimraf test/site",
     "build": "babel src --out-dir lib",
-    "pretest": "npm run clean:test && gulp asset:test && gulp asset:deploy",
+    "pretest:clone": "git clone --recursive https://github.com/hexojs/hexo-starter.git ./test/site",
+    "pretest:asset": "cpx \"test/asset/**/*\" test/site",
+    "pretest:bootstrap": "npm --prefix=test/site install",
+    "pretest": "run-s clean:test pretest:clone pretest:asset pretest:bootstrap",
     "test": "mocha"
   },
   "keywords": [
@@ -40,10 +43,8 @@
     "babel-plugin-add-module-exports": "^1.0.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
-    "del": "^2.2.0",
+    "cpx": "^1.5.0",
     "eslint": "^5.12.1",
-    "gulp": "^4.0.0",
-    "gulp-heap": "^2.0.0-alpha.1",
     "hexo": "hexojs/hexo",
     "hexo-fs": "^0.2.0",
     "hexo-util": "^0.6.0",

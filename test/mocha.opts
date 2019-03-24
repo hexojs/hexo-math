@@ -1,0 +1,3 @@
+--reporter spec
+--require test/scaffolds.js
+test/**/*.spec.js

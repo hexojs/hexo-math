@@ -1,16 +1,8 @@
-var _, consts, path, util;
+const util = require('./util');
 
-util = require('./util');
-
-path = require('path');
-
-_ = require('underscore');
-
-consts = require('../src/consts');
-
-describe("KaTeX", function() {
-  var base_dir, h, hexo, mathJax;
-  h = ({hexo, base_dir, mathJax} = util.initHexo('katex'));
+describe("KaTeX", () => {
+  const h = util.initHexo('katex');
+  const {hexo} = h;
   before(function() {
     this.timeout(0);
     return h.setup();
@@ -19,10 +11,9 @@ describe("KaTeX", function() {
     this.timeout(0);
     return h.teardown();
   });
-  return it("should pass all test posts", function() {
-    var posts;
-    posts = hexo.locals.toObject().posts.data;
-    return posts.forEach(function(post) {
+  return it("should pass all test posts", () => {
+    const posts = hexo.locals.toObject().posts.data;
+    return posts.forEach(post => {
       if (post.katex_expected == null) {
         return;
       }

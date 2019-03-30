@@ -11,7 +11,7 @@ export default class Post {
   }
   register () {
     if (this.opts.engine !== 'katex') return
-    let { filter } = this.hexo.extend
+    const { filter } = this.hexo.extend
     filter.register('before_post_render', this._transform.bind(this))
   }
   _transform (data) {
@@ -20,7 +20,7 @@ export default class Post {
     return data
   }
   _render (match, math, isBlock) {
-    let opts = _.extend({}, this.opts.katex.config, { displayMode: isBlock })
+    const opts = _.extend({}, this.opts.katex.config, { displayMode: isBlock })
 
     try {
       return katex.renderToString(entities.decode(math), opts)

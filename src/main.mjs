@@ -12,7 +12,7 @@ export default class MathJax {
     this.post = new Post(hexo, this.opts);
   }
   register() {
-    let { tag, injector, post } = this;
+    const { tag, injector, /* post */ } = this;
     tag.register();
     injector.register();
     // post.register();

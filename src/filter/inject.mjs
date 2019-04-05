@@ -6,7 +6,7 @@ export default class Inject {
     this.opts = opts;
   }
   register() {
-    let { filter } = this.hexo.extend;
+    const { filter } = this.hexo.extend;
     const injectors = {
       mathjax: this._injectMathJax.bind(this),
       katex: this._injectKaTeX.bind(this)
@@ -14,8 +14,8 @@ export default class Inject {
     filter.register("inject_ready", injectors[this.opts.engine])
   }
   _injectMathJax(inject) {
-    let data = this.opts.mathjax
-    let opts = {
+    const data = this.opts.mathjax
+    const opts = {
       data,
       inline: true,
       shouldInject: (src) => src.indexOf(MATH_MARKER) >= 0 || INLINE_MATH_REGEX.test(src) || BLOCK_MATH_REGEX.test(src)
@@ -23,9 +23,9 @@ export default class Inject {
     inject.bodyEnd.require('../../asset/inject.swig', opts)
   }
   _injectKaTeX(inject) {
-    let { css } = this.opts.katex
+    const { css } = this.opts.katex
 
-    let opts = {
+    const opts = {
       shouldInject: (src) => src.indexOf(KATEX_INLINE_MARKER) >= 0 || src.indexOf(KATEX_BLOCK_MARKER) >= 0
     }
 

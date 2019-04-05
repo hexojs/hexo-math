@@ -11,11 +11,11 @@ export default class MathTag {
     this.opts = opts
   }
   register() {
-    let { tag } = this.hexo.extend;
+    const { tag } = this.hexo.extend;
     tag.register("math", this._transform.bind(this), { ends: true });
   }
   _transform(args, content) {
-    let multiLine = /\n/.test(content);
+    const multiLine = /\n/.test(content);
 
     const transformers = {
       mathjax: this._mathJax.bind(this),
@@ -30,10 +30,10 @@ export default class MathTag {
   }
   _kaTeX(content, multiLine) {
     content = entities.decode(content.trim());
-    let opts = _.extend({}, this.opts.katex.config, { displayMode: multiLine })
+    const opts = _.extend({}, this.opts.katex.config, { displayMode: multiLine })
 
     try {
-        return katex.renderToString(content, opts)
+      return katex.renderToString(content, opts)
     } catch (e) {
       this.hexo.log.error(e)
     }

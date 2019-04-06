@@ -1,0 +1,15 @@
+{
+    "extends": "hexo/test",
+    "root": false,
+    "rules": {
+        "quotes": "off",
+        "semi": "off",
+        "no-undef": "off",
+        "comma-dangle": "off",
+        "array-bracket-spacing": "off",
+        "comma-spacing": "off",
+        "space-before-function-paren": "off",
+        "node/no-unpublished-require": "off",
+        "node/no-missing-require": "off"
+    }
+}

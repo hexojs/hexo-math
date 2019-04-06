@@ -2,7 +2,12 @@
     "extends": "hexo/test",
     "root": false,
     "rules": {
-        "no-undef": "off",
         "node/no-missing-require": "off"
+    },
+    "globals": {
+        "chai": true,
+        "Hexo": true,
+        "fs": true,
+        "expect": true
     }
 }

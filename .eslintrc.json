@@ -4,7 +4,9 @@
         "sourceType": "module"
     },
     "rules": {
-        "node/no-unsupported-features": ["error", { "ignores": ["modules"] }],
-        "no-undef": "off"
+        "node/no-unsupported-features": ["error", { "ignores": ["modules"] }]
+    },
+    "globals": {
+        "hexo": true
     }
 }

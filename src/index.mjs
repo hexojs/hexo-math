@@ -1,4 +1,4 @@
-import MathJax from "./main";
+import MathJax from './main';
 
-const math = hexo.math = new MathJax(hexo)
-math.register()
+const math = hexo.math = new MathJax(hexo);
+math.register();

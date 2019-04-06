@@ -5,12 +5,6 @@
     },
     "rules": {
         "node/no-unsupported-features": ["error", { "ignores": ["modules"] }],
-        "quotes": "off",
-        "semi": "off",
-        "no-undef": "off",
-        "comma-dangle": "off",
-        "array-bracket-spacing": "off",
-        "comma-spacing": "off",
-        "space-before-function-paren": "off"
+        "no-undef": "off"
     }
 }

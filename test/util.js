@@ -6,11 +6,11 @@ module.exports = {
   // Note: somewhere in hexo's packages there's a global leak.
   // Disabled mocha's leak checking for now
   initHexo: function(engine) {
-    const site_dir = "./test/site";
+    const site_dir = './test/site';
     if (!fs.existsSync(site_dir)) {
-      throw new Error("Test site not found. Run `gulp asset:test` first.");
+      throw new Error('Test site not found. Run `gulp asset:test` first.');
     }
-    const base_dir = path.join(__dirname, "site");
+    const base_dir = path.join(__dirname, 'site');
     const hexo = new Hexo(base_dir, {
       silent: true
     });

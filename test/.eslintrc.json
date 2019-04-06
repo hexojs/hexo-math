@@ -9,7 +9,6 @@
         "array-bracket-spacing": "off",
         "comma-spacing": "off",
         "space-before-function-paren": "off",
-        "node/no-unpublished-require": "off",
         "node/no-missing-require": "off"
     }
 }

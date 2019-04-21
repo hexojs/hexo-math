@@ -1,4 +1,5 @@
 'use strict';
+const { expect } = require('chai');
 const util = require('./util');
 
 describe('KaTeX', () => {
@@ -12,13 +13,13 @@ describe('KaTeX', () => {
     this.timeout(0);
     return h.teardown();
   });
-  return it('should pass all test posts', () => {
+  it('should pass all test posts', () => {
     const posts = hexo.locals.toObject().posts.data;
-    return posts.forEach(post => {
+    posts.forEach(post => {
       if (post.katex_expected == null) {
         return;
       }
-      return expect(post.content, post.title).to.equal(post.katex_expected);
+      expect(post.content, post.title).to.equal(post.katex_expected);
     });
   });
 });

@@ -1,24 +1,25 @@
 'use strict';
 const path = require('path');
-
+const Hexo = require('hexo');
+const fs = require('hexo-fs');
 const MathJax = require('../src/main');
+
+const base_dir = path.join(__dirname, 'site');
 
 module.exports = {
   // Note: somewhere in hexo's packages there's a global leak.
   // Disabled mocha's leak checking for now
-  initHexo: function(engine) {
+  initHexo(engine) {
     const site_dir = './test/site';
     if (!fs.existsSync(site_dir)) {
-      throw new Error('Test site not found. Run `gulp asset:test` first.');
+      throw new Error('Test site not found. Run `npm run pretest:asset` first.');
     }
-    const base_dir = path.join(__dirname, 'site');
-    const hexo = new Hexo(base_dir, {
-      silent: true
-    });
+    const hexo = new Hexo(base_dir, { silent: true });
     const mathJax = new MathJax(hexo);
     mathJax.opts.engine = engine;
     mathJax.register();
-    hexo.extend.filter.register('after_post_render', function(data) {
+
+    hexo.extend.filter.register('after_post_render', data => {
       const expected_file = path.join(base_dir, `/source/${data.source.replace('_posts', `_expected/${engine}`)}.expected`);
       if (fs.existsSync(expected_file)) {
         data[`${engine}_expected`] = fs.readFileSync(expected_file);
@@ -27,17 +28,19 @@ module.exports = {
       }
       return data;
     });
-    const setup = function() {
-      return hexo.init().then(function() {
-        return hexo.call('generate', {});
-      });
-    };
-    const teardown = function() {
-      return hexo.call('clean', {});
-    };
-    return {base_dir, mathJax, hexo, setup, teardown};
+
+    return {
+      base_dir,
+      mathJax,
+      hexo,
+      setup() {
+        return hexo.init().then(() => hexo.call('generate', {}));
+      },
+      teardown() {
+        return hexo.call('clean', {});
+      }};
   },
-  mockHexoWithThemeConfig: function(theme_base, opts) {
+  mockHexoWithThemeConfig(theme_base, opts) {
     const hexo = {
       theme: {
         base: theme_base,

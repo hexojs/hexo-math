@@ -1,0 +1,12 @@
+{
+    "extends": "hexo",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "node/no-unsupported-features": ["error", { "ignores": ["modules"] }]
+    },
+    "globals": {
+        "hexo": true
+    }
+}

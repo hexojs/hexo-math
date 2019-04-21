@@ -1,7 +1,7 @@
-import MathTag from "./tag/math";
-import Inject from "./filter/inject";
-import Post from "./filter/post";
-import { getOptions } from "./option";
+import MathTag from './tag/math';
+import Inject from './filter/inject';
+import Post from './filter/post';
+import { getOptions } from './option';
 
 export default class MathJax {
   constructor(hexo, opts) {
@@ -12,7 +12,7 @@ export default class MathJax {
     this.post = new Post(hexo, this.opts);
   }
   register() {
-    const { tag, injector, /* post */ } = this;
+    const { tag, injector /* post */ } = this;
     tag.register();
     injector.register();
     // post.register();

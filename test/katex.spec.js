@@ -1,6 +1,6 @@
 const util = require('./util');
 
-describe("KaTeX", () => {
+describe('KaTeX', () => {
   const h = util.initHexo('katex');
   const {hexo} = h;
   before(function() {
@@ -11,7 +11,7 @@ describe("KaTeX", () => {
     this.timeout(0);
     return h.teardown();
   });
-  return it("should pass all test posts", () => {
+  return it('should pass all test posts', () => {
     const posts = hexo.locals.toObject().posts.data;
     return posts.forEach(post => {
       if (post.katex_expected == null) {

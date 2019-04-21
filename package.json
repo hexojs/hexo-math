@@ -16,7 +16,10 @@
     "pretest:asset": "cpx \"test/asset/**/*\" test/site",
     "pretest:bootstrap": "npm --prefix=test/site install",
     "pretest": "run-s clean:test pretest:clone pretest:asset pretest:bootstrap",
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "run-p lint:*",
+    "lint:src": "eslint src/*.mjs",
+    "lint:test": "eslint test/*.js"
   },
   "keywords": [
     "website",
@@ -38,12 +41,12 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "@babel/register": "^7.0.0",
-    "babel-eslint": "^10.0.1",
     "babel-plugin-add-module-exports": "^1.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "cpx": "^1.5.0",
     "eslint": "^5.12.1",
+    "eslint-config-hexo": "^3.0.0",
     "hexo": "hexojs/hexo",
     "hexo-fs": "^0.2.0",
     "hexo-util": "^0.6.0",

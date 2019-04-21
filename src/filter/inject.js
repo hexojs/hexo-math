@@ -1,3 +1,4 @@
+'use strict';
 const { MATH_MARKER, INLINE_MATH_REGEX, BLOCK_MATH_REGEX, KATEX_BLOCK_MARKER, KATEX_INLINE_MARKER } = require('../consts');
 
 module.exports = class Inject {

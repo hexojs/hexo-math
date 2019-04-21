@@ -1,3 +1,4 @@
+'use strict';
 const { AllHtmlEntities } = require('html-entities');
 const { MATH_MARKER } = require('../consts');
 const katex = require('katex');

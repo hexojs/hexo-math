@@ -1,3 +1,4 @@
+'use strict';
 const isObject = require('isobject');
 
 const DEFAULT_OPTS = {

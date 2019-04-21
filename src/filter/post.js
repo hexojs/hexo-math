@@ -1,3 +1,4 @@
+'use strict';
 const { BLOCK_MATH_RENDER_REGEX, INLINE_MATH_RENDER_REGEX } = require('../consts');
 const { AllHtmlEntities } = require('html-entities');
 const katex = require('katex');

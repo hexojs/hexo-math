@@ -1,3 +1,4 @@
+'use strict';
 module.exports.INLINE_MATH_REGEX = /\$[\s\S]+?\$/;
 module.exports.BLOCK_MATH_REGEX = /^\s*\$\$[\s\S]*\$\$\s*$/m;
 module.exports.INLINE_MATH_RENDER_REGEX = /\$([^\n]+?)\$/g;

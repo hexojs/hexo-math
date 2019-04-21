@@ -1,3 +1,4 @@
+'use strict';
 const MathTag = require('./tag/math');
 const Inject = require('./filter/inject');
 const Post = require('./filter/post');

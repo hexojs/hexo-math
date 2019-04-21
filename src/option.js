@@ -1,6 +1,6 @@
-import isObject from 'isobject';
+const isObject = require('isobject');
 
-export const DEFAULT_OPTS = {
+const DEFAULT_OPTS = {
   engine: 'mathjax',
   mathjax: {
     src: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
@@ -32,7 +32,7 @@ const ENGINES = [
   'katex'
 ];
 
-export function getOptions({ config, log }, opts) {
+const getOptions = ({ config, log }, opts) => {
   if (isObject(config.mathjax)) {
     log.warn('[hexo-math] Deprecation Notice: configuration format changed since 3.0.0. Please move `mathjax` to `math.mathjax` in your site\'s `_config.yml` file');
     if (!isObject(config.math)) config.math = { mathjax: config.mathjax };
@@ -45,4 +45,8 @@ export function getOptions({ config, log }, opts) {
   log.info(`[hexo-math] Using engine '${opts.engine}'`);
 
   return opts;
-}
+};
+
+
+module.exports = { getOptions, DEFAULT_OPTS };
+

@@ -1,10 +1,10 @@
-import { AllHtmlEntities } from 'html-entities';
-import { MATH_MARKER } from '../consts';
-import katex from 'katex';
+const { AllHtmlEntities } = require('html-entities');
+const { MATH_MARKER } = require('../consts');
+const katex = require('katex');
 
 const entities = new AllHtmlEntities();
 
-export default class MathTag {
+module.exports = class MathTag {
   constructor(hexo, opts) {
     this.hexo = hexo;
     this.opts = opts;
@@ -38,4 +38,4 @@ export default class MathTag {
 
     return content;
   }
-}
+};

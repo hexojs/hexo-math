@@ -1,6 +1,6 @@
-import { MATH_MARKER, INLINE_MATH_REGEX, BLOCK_MATH_REGEX, KATEX_BLOCK_MARKER, KATEX_INLINE_MARKER } from '../consts';
+const { MATH_MARKER, INLINE_MATH_REGEX, BLOCK_MATH_REGEX, KATEX_BLOCK_MARKER, KATEX_INLINE_MARKER } = require('../consts');
 
-export default class Inject {
+module.exports = class Inject {
   constructor(hexo, opts) {
     this.hexo = hexo;
     this.opts = opts;
@@ -31,4 +31,4 @@ export default class Inject {
 
     inject.headEnd.link({ rel: 'stylesheet', href: css }, opts);
   }
-}
+};

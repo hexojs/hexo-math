@@ -1,9 +1,6 @@
 {
     "extends": "hexo/test",
     "root": false,
-    "rules": {
-        "node/no-missing-require": "off"
-    },
     "globals": {
         "chai": true,
         "Hexo": true,

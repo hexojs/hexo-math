@@ -18,7 +18,7 @@ export default class Inject {
     const opts = {
       data,
       inline: true,
-      shouldInject: (src) => src.indexOf(MATH_MARKER) >= 0 || INLINE_MATH_REGEX.test(src) || BLOCK_MATH_REGEX.test(src)
+      shouldInject: (src) => src.includes(MATH_MARKER) || INLINE_MATH_REGEX.test(src) || BLOCK_MATH_REGEX.test(src)
     };
     inject.bodyEnd.require('../../asset/inject.swig', opts);
   }
@@ -26,7 +26,7 @@ export default class Inject {
     const { css } = this.opts.katex;
 
     const opts = {
-      shouldInject: (src) => src.indexOf(KATEX_INLINE_MARKER) >= 0 || src.indexOf(KATEX_BLOCK_MARKER) >= 0
+      shouldInject: (src) => src.includes(KATEX_INLINE_MARKER) || src.includes(KATEX_BLOCK_MARKER)
     };
 
     inject.headEnd.link({ rel: 'stylesheet', href: css }, opts);

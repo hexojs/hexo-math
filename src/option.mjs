@@ -40,7 +40,7 @@ export function getOptions({ config, log }, opts) {
 
   opts = Object.assign({}, DEFAULT_OPTS, config.math, opts);
 
-  if (ENGINES.indexOf(opts.engine) < 0) throw new TypeError('hexo-math does not support engine named \'opts.engine\'');
+  if (!ENGINES.includes(opts.engine)) throw new TypeError('hexo-math does not support engine named \'opts.engine\'');
 
   log.info(`[hexo-math] Using engine '${opts.engine}'`);
 

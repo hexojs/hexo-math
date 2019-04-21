@@ -1,7 +1,6 @@
 import { AllHtmlEntities } from "html-entities";
 import { MATH_MARKER } from "../consts";
 import katex from 'katex';
-import _ from 'underscore';
 
 const entities = new AllHtmlEntities()
 
@@ -30,7 +29,7 @@ export default class MathTag {
   }
   _kaTeX(content, multiLine) {
     content = entities.decode(content.trim());
-    const opts = _.extend({}, this.opts.katex.config, { displayMode: multiLine })
+    const opts = Object.assign({}, this.opts.katex.config, { displayMode: multiLine })
 
     try {
       return katex.renderToString(content, opts)

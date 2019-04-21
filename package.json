@@ -33,8 +33,8 @@
   "license": "MIT",
   "dependencies": {
     "html-entities": "^1.1.3",
-    "katex": "^0.6.0",
-    "underscore": "^1.9.1"
+    "isobject": "^3.0.1",
+    "katex": "^0.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

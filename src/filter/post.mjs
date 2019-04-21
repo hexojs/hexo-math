@@ -1,7 +1,6 @@
 import { BLOCK_MATH_RENDER_REGEX, INLINE_MATH_RENDER_REGEX } from '../consts'
 import { AllHtmlEntities } from "html-entities";
 import katex from 'katex'
-import _ from 'underscore'
 const entities = new AllHtmlEntities()
 
 export default class Post {
@@ -20,7 +19,7 @@ export default class Post {
     return data
   }
   _render (match, math, isBlock) {
-    const opts = _.extend({}, this.opts.katex.config, { displayMode: isBlock })
+    const opts = Object.assign({}, this.opts.katex.config, { displayMode: isBlock })
 
     try {
       return katex.renderToString(entities.decode(math), opts)

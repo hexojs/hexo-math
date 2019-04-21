@@ -1,4 +1,4 @@
-import _ from 'underscore';
+import isObject from 'isobject';
 
 export const DEFAULT_OPTS = {
   engine: 'mathjax',
@@ -33,12 +33,12 @@ const ENGINES = [
 ];
 
 export function getOptions({ config, log }, opts) {
-  if (_.isObject(config.mathjax)) {
+  if (isObject(config.mathjax)) {
     log.warn('[hexo-math] Deprecation Notice: configuration format changed since 3.0.0. Please move `mathjax` to `math.mathjax` in your site\'s `_config.yml` file');
-    if (!_.isObject(config.math)) config.math = { mathjax: config.mathjax };
+    if (!isObject(config.math)) config.math = { mathjax: config.mathjax };
   }
 
-  opts = _.defaults({}, opts, config.math, DEFAULT_OPTS);
+  opts = Object.assign({}, DEFAULT_OPTS, config.math, opts);
 
   if (ENGINES.indexOf(opts.engine) < 0) throw new TypeError('hexo-math does not support engine named \'opts.engine\'');
 

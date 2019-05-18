@@ -1,4 +1,4 @@
 {
     "extends": "hexo/test",
-    "root": false,
+    "root": false
 }

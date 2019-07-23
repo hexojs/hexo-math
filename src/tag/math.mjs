@@ -1,18 +1,18 @@
-import { AllHtmlEntities } from "html-entities";
-import { MATH_MARKER } from "../consts";
+import { AllHtmlEntities } from 'html-entities';
+import { MATH_MARKER } from '../consts';
 import katex from 'katex';
 import _ from 'underscore';
 
-const entities = new AllHtmlEntities()
+const entities = new AllHtmlEntities();
 
 export default class MathTag {
   constructor(hexo, opts) {
     this.hexo = hexo;
-    this.opts = opts
+    this.opts = opts;
   }
   register() {
     const { tag } = this.hexo.extend;
-    tag.register("math", this._transform.bind(this), { ends: true });
+    tag.register('math', this._transform.bind(this), { ends: true });
   }
   _transform(args, content) {
     const multiLine = /\n/.test(content);
@@ -20,24 +20,24 @@ export default class MathTag {
     const transformers = {
       mathjax: this._mathJax.bind(this),
       katex: this._kaTeX.bind(this)
-    }
-    return transformers[this.opts.engine](content, multiLine)
+    };
+    return transformers[this.opts.engine](content, multiLine);
   }
   _mathJax(content, multiLine) {
     content = entities.encode(content.trim());
     return multiLine ? `<span>$$${content}$$</span>${MATH_MARKER}`
-                     : `<span>$${content}$</span>${MATH_MARKER}`;
+      : `<span>$${content}$</span>${MATH_MARKER}`;
   }
   _kaTeX(content, multiLine) {
     content = entities.decode(content.trim());
-    const opts = _.extend({}, this.opts.katex.config, { displayMode: multiLine })
+    const opts = _.extend({}, this.opts.katex.config, { displayMode: multiLine });
 
     try {
-      return katex.renderToString(content, opts)
+      return katex.renderToString(content, opts);
     } catch (e) {
-      this.hexo.log.error(e)
+      this.hexo.log.error(e);
     }
 
-    return content
+    return content;
   }
 }

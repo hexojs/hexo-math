@@ -2,20 +2,17 @@
   "name": "hexo-math",
   "version": "4.0.0",
   "description": "Add math support to hexo",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/akfish/hexo-math.git"
   },
   "scripts": {
-    "clean": "run-p clean:*",
-    "clean:build": "rimraf lib",
-    "clean:test": "rimraf test/site",
-    "build": "babel src --out-dir lib",
+    "clean": "rimraf test/site",
     "pretest:clone": "git clone --recursive https://github.com/hexojs/hexo-starter.git ./test/site",
     "pretest:asset": "cpx \"test/asset/**/*\" test/site",
     "pretest:bootstrap": "npm --prefix=test/site install",
-    "pretest": "run-s clean:test pretest:clone pretest:asset pretest:bootstrap",
+    "pretest": "run-s clean pretest:clone pretest:asset pretest:bootstrap",
     "test": "mocha",
     "lint": "run-p lint:*",
     "lint:src": "eslint src/*.js",

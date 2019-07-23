@@ -18,7 +18,7 @@
     "pretest": "run-s clean:test pretest:clone pretest:asset pretest:bootstrap",
     "test": "mocha",
     "lint": "run-p lint:*",
-    "lint:src": "eslint src/*.mjs",
+    "lint:src": "eslint src/*.js",
     "lint:test": "eslint test/*.js"
   },
   "keywords": [

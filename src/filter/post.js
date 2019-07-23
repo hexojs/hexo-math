@@ -1,10 +1,10 @@
-import { BLOCK_MATH_RENDER_REGEX, INLINE_MATH_RENDER_REGEX } from '../consts';
-import { AllHtmlEntities } from 'html-entities';
-import katex from 'katex';
-import _ from 'underscore';
+const { BLOCK_MATH_RENDER_REGEX, INLINE_MATH_RENDER_REGEX } = require('../consts');
+const { AllHtmlEntities } = require('html-entities');
+const katex = require('katex');
+const _ = require('underscore');
 const entities = new AllHtmlEntities();
 
-export default class Post {
+module.exports = class Post {
   constructor(hexo, opts) {
     this.hexo = hexo;
     this.opts = opts;
@@ -31,4 +31,4 @@ export default class Post {
 
     return match;
   }
-}
+};

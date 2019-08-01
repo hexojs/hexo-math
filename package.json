@@ -18,7 +18,7 @@
     "pretest": "run-s clean:test pretest:clone pretest:asset pretest:bootstrap",
     "test": "mocha",
     "lint": "run-p lint:*",
-    "lint:src": "eslint src/*.mjs",
+    "lint:src": "eslint src/*.js",
     "lint:test": "eslint test/*.js"
   },
   "keywords": [
@@ -45,7 +45,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "cpx": "^1.5.0",
-    "eslint": "^5.12.1",
+    "eslint": "^6.1.0",
     "eslint-config-hexo": "^3.0.0",
     "hexo": "hexojs/hexo",
     "hexo-fs": "^1.0.2",

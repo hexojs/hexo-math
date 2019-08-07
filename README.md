@@ -1,5 +1,7 @@
-hexo-math [![Build Status](https://travis-ci.org/hexojs/hexo-math.svg?branch=master)](https://travis-ci.org/hexojs/hexo-math)
-===================
+# hexo-math
+
+[![Build Status](https://travis-ci.org/hexojs/hexo-math.svg?branch=master)](https://travis-ci.org/hexojs/hexo-math)
+[![NPM version](https://badge.fury.io/js/hexo-math.svg)](https://www.npmjs.com/package/hexo-math)
 
 A hexo plugin that uses MathJax/KaTeX to render math equations. Features:
 

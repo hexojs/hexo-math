@@ -9,7 +9,7 @@
   },
   "scripts": {
     "clean": "rimraf test/site",
-    "pretest:clone": "git clone --recursive https://github.com/hexojs/hexo-starter.git ./test/site",
+    "pretest:clone": "git clone --recursive https://github.com/hexojs/hexo-starter.git ./test/site && cd ./test/site && git checkout a4d537",
     "pretest:asset": "cpx \"test/asset/**/*\" test/site",
     "pretest:bootstrap": "npm --prefix=test/site install",
     "pretest": "run-s clean pretest:clone pretest:asset pretest:bootstrap",

@@ -2,23 +2,20 @@
   "name": "hexo-math",
   "version": "4.0.0",
   "description": "Add math support to hexo",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/akfish/hexo-math.git"
   },
   "scripts": {
-    "clean": "run-p clean:*",
-    "clean:build": "rimraf lib",
-    "clean:test": "rimraf test/site",
-    "build": "babel src --out-dir lib",
-    "pretest:clone": "git clone --recursive https://github.com/hexojs/hexo-starter.git ./test/site",
+    "clean": "rimraf test/site",
+    "pretest:clone": "git clone --recursive https://github.com/hexojs/hexo-starter.git ./test/site && cd ./test/site && git checkout a4d537",
     "pretest:asset": "cpx \"test/asset/**/*\" test/site",
     "pretest:bootstrap": "npm --prefix=test/site install",
-    "pretest": "run-s clean:test pretest:clone pretest:asset pretest:bootstrap",
+    "pretest": "run-s clean pretest:clone pretest:asset pretest:bootstrap",
     "test": "mocha",
     "lint": "run-p lint:*",
-    "lint:src": "eslint src/*.mjs",
+    "lint:src": "eslint src/*.js",
     "lint:test": "eslint test/*.js"
   },
   "keywords": [
@@ -37,11 +34,6 @@
     "underscore": "^1.9.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/register": "^7.0.0",
-    "babel-plugin-add-module-exports": "^1.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "cpx": "^1.5.0",

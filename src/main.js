@@ -1,9 +1,10 @@
-import MathTag from './tag/math';
-import Inject from './filter/inject';
-import Post from './filter/post';
-import { getOptions } from './option';
+'use strict';
+const MathTag = require('./tag/math');
+const Inject = require('./filter/inject');
+const Post = require('./filter/post');
+const { getOptions } = require('./option');
 
-export default class MathJax {
+module.exports = class MathJax {
   constructor(hexo, opts) {
     this.hexo = hexo;
     this.opts = getOptions(hexo, opts);
@@ -17,4 +18,4 @@ export default class MathJax {
     injector.register();
     // post.register();
   }
-}
+};

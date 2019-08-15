@@ -1,5 +1,4 @@
-require('@babel/register');
-
+'use strict';
 global.Hexo = require('hexo');
 
 global.fs = require('hexo-fs');

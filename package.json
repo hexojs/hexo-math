@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/akfish/hexo-math.git"
+    "url": "https://github.com/hexojs/hexo-math.git"
   },
   "scripts": {
     "clean": "rimraf test/site",
@@ -18,6 +18,14 @@
     "lint:src": "eslint src/*.js",
     "lint:test": "eslint test/*.js"
   },
+  "directories": {
+    "asset": "./asset",
+    "src": "./src"
+  },
+  "files": [
+    "asset/",
+    "src/"
+  ],
   "keywords": [
     "website",
     "blog",

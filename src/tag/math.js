@@ -1,8 +1,7 @@
 const { AllHtmlEntities } = require('html-entities');
 const { MATH_MARKER } = require('../consts');
 const katex = require('katex');
-const _ = require('underscore');
-
+const extend = require('../extend');
 const entities = new AllHtmlEntities();
 
 module.exports = class MathTag {
@@ -30,7 +29,7 @@ module.exports = class MathTag {
   }
   _kaTeX(content, multiLine) {
     content = entities.decode(content.trim());
-    const opts = _.extend({}, this.opts.katex.config, { displayMode: multiLine });
+    const opts = extend({}, this.opts.katex.config, { displayMode: multiLine });
 
     try {
       return katex.renderToString(content, opts);

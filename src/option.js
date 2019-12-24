@@ -1,5 +1,4 @@
 'use strict';
-const _ = require('underscore');
 
 const DEFAULT_OPTS = module.exports.DEFAULT_OPTS = {
   engine: 'mathjax',
@@ -34,12 +33,12 @@ const ENGINES = [
 ];
 
 module.exports.getOptions = function({ config, log }, opts) {
-  if (_.isObject(config.mathjax)) {
+  if (config.mathjax === Object(config.mathjax)) {
     log.warn('[hexo-math] Deprecation Notice: configuration format changed since 3.0.0. Please move `mathjax` to `math.mathjax` in your site\'s `_config.yml` file');
-    if (!_.isObject(config.math)) config.math = { mathjax: config.mathjax };
+    if (config.math !== Object(config.math)) config.math = { mathjax: config.mathjax };
   }
 
-  opts = _.defaults({}, opts, config.math, DEFAULT_OPTS);
+  opts = Object.assign({}, opts, config.math, DEFAULT_OPTS);
 
   if (ENGINES.indexOf(opts.engine) < 0) throw new TypeError('hexo-math does not support engine named \'opts.engine\'');
 

@@ -1,8 +1,8 @@
 const { BLOCK_MATH_RENDER_REGEX, INLINE_MATH_RENDER_REGEX } = require('../consts');
 const { AllHtmlEntities } = require('html-entities');
 const katex = require('katex');
-const _ = require('underscore');
 const entities = new AllHtmlEntities();
+const extend = require('../extend')
 
 module.exports = class Post {
   constructor(hexo, opts) {
@@ -20,7 +20,7 @@ module.exports = class Post {
     return data;
   }
   _render(match, math, isBlock) {
-    const opts = _.extend({}, this.opts.katex.config, { displayMode: isBlock });
+    const opts = extend({}, this.opts.katex.config, { displayMode: isBlock });
 
     try {
       return katex.renderToString(entities.decode(math), opts);

@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-
+const fs = require('fs');
 const MathJax = require('../src/main');
 
 module.exports = {

@@ -44,7 +44,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "cpx": "^1.5.0",
-    "eslint": "^6.1.0",
+    "eslint": "^7.0.0",
     "eslint-config-hexo": "^3.0.0",
     "hexo": "hexojs/hexo",
     "hexo-fs": "^2.0.0",

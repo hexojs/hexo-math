@@ -119,7 +119,7 @@ Multiple line content will be parsed as block math (same as `$$...$$`)
 
 >**Tag Block:**
 
->```markdown
+```markdown
 {% math_block %}
 \begin{aligned}
 \dot{x} & = \sigma(y-x) \\

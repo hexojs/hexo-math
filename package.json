@@ -1,59 +1,50 @@
 {
   "name": "hexo-math",
   "version": "4.0.0",
-  "description": "Add math support to hexo",
-  "main": "src/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hexojs/hexo-math.git"
-  },
-  "scripts": {
-    "clean": "rimraf test/site",
-    "pretest:clone": "git clone --recursive https://github.com/hexojs/hexo-starter.git ./test/site",
-    "pretest:asset": "cpx \"test/asset/**/*\" test/site",
-    "pretest:bootstrap": "npm --prefix=test/site install",
-    "pretest": "run-s clean pretest:clone pretest:asset pretest:bootstrap",
-    "test": "mocha",
-    "lint": "run-p lint:*",
-    "lint:src": "eslint src/*.js",
-    "lint:test": "eslint test/*.js"
-  },
+  "description": "Add KaTeX and MathJax support to Hexo",
+  "main": "index.js",
   "directories": {
-    "asset": "./asset",
-    "src": "./src"
+    "lib": "./lib",
+    "dist": "./dist"
   },
   "files": [
-    "asset/",
-    "src/"
+    "lib/",
+    "dist/",
+    "index.js"
   ],
+  "engines": {
+    "node": ">= 10.13.0"
+  },
+  "scripts": {
+    "eslint": "eslint .",
+    "test": "mocha test/index.js"
+  },
+  "repository": "hexojs/hexo-filter-nofollow",
   "keywords": [
-    "website",
-    "blog",
-    "cms",
-    "framework",
     "hexo",
+    "katex",
+    "math",
     "mathjax"
   ],
   "author": "AKFish <akfish@gmail.com> (http://catx.me)",
+  "contributors": [
+    "Hexo Core Team (https://github.com/orgs/hexojs/teams/core)"
+  ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hexojs/hexo-math/issues"
+  },
+  "homepage": "https://github.com/hexojs/hexo-math",
   "dependencies": {
-    "html-entities": "^1.1.3",
-    "katex": "^0.6.0"
+    "hexo-util": "^2.2.0",
+    "katex": "^0.12.0",
+    "mathjax": "^3.0.5"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
-    "cpx": "^1.5.0",
-    "eslint": "^6.1.0",
-    "eslint-config-hexo": "^3.0.0",
+    "eslint": "^7.5.0",
+    "eslint-config-hexo": "^4.1.0",
     "hexo": "hexojs/hexo",
-    "hexo-fs": "^2.0.0",
-    "hexo-util": "^1.0.0",
-    "mocha": "^6.1.2",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.0"
-  },
-  "engines": {
-    "node": "^8.9 || ^10.13 || >=12"
+    "mocha": "^8.0.1"
   }
 }

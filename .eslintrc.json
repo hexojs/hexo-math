@@ -1,6 +1,0 @@
-{
-    "extends": "hexo",
-    "globals": {
-        "hexo": true
-    }
-}

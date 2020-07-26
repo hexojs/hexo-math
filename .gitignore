@@ -1,5 +1,6 @@
+
+.DS_Store
 node_modules/
-lib/
-test/site/
 package-lock.json
-*.orig
+tmp/
+*.log

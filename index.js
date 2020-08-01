@@ -10,7 +10,7 @@ hexo.config.math = Object.assign({
     }
   },
   mathjax: {
-    css: 'https://cdn.jsdelivr.net/gh/hexojs/hexo-math/master/dist/style.css',
+    css: 'https://cdn.jsdelivr.net/gh/hexojs/hexo-math/dist/style.css',
     options: {
       // https://docs.mathjax.org/en/latest/web/typeset.html#conversion-options
       conversion: {

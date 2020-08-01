@@ -118,7 +118,7 @@ math:
     options:
       throwOnError: false
   mathjax:
-    css: 'https://cdn.jsdelivr.net/gh/hexojs/hexo-math/master/dist/style.css'
+    css: 'https://cdn.jsdelivr.net/gh/hexojs/hexo-math/dist/style.css'
     options:
       conversion:
         display: false

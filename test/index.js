@@ -159,6 +159,10 @@ describe('hexo-math', () => {
       return `<link rel="stylesheet" href="${url_for.call(hexo, path)}">\n`;
     };
 
+    hexo.extend.helper.register('css', path => {
+      return css(path);
+    });
+
     describe('katex', () => {
       const k = require('../lib/inject/katex')(hexo);
 

@@ -4,7 +4,7 @@ require('chai').should();
 
 const { url_for } = require('hexo-util');
 const Hexo = require('hexo');
-const hexo = new Hexo(__dirname);
+const hexo = new Hexo(__dirname, { silent: true });
 const { renderToString: renderKatex } = require('katex');
 
 describe('hexo-math', () => {

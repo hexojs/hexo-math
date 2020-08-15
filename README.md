@@ -1,5 +1,6 @@
 # hexo-math
 
+[![Tester](https://github.com/hexojs/hexo-math/workflows/Tester/badge.svg?branch=master)](https://github.com/hexojs/hexo-math/actions?query=workflow%3ATester)
 [![npm version](https://badge.fury.io/js/hexo-math.svg)](https://www.npmjs.com/package/hexo-math)
 [![npm license](https://img.shields.io/npm/l/hexo-math)](./LICENSE)
 ![npm download](https://img.shields.io/npm/dt/hexo-math)

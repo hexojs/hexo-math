@@ -2,13 +2,13 @@
 
 require('chai').should();
 
-const { deepMerge, url_for } = require('hexo-util');
+const { url_for } = require('hexo-util');
 const Hexo = require('hexo');
 const hexo = new Hexo(__dirname);
 const { renderToString: renderKatex } = require('katex');
 
 describe('hexo-math', () => {
-  const defaultCfg = deepMerge(hexo.config, {
+  const defaultCfg = JSON.parse(JSON.stringify(Object.assign(hexo.config, {
     math: {
       katex: {
         enable: true,
@@ -29,11 +29,11 @@ describe('hexo-math', () => {
         }
       }
     }
-  });
+  })));
   let args = [];
 
   beforeEach(() => {
-    hexo.config = deepMerge(hexo.config, defaultCfg);
+    hexo.config = JSON.parse(JSON.stringify(defaultCfg));
     args = [];
   });
 

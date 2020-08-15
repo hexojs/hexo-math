@@ -1,0 +1,6 @@
+{
+  "extends": "hexo/test",
+  "env": {
+    "es6": true
+  }
+}

@@ -1,5 +1,16 @@
+os:
+  - linux
+  - windows
+
 language: node_js
+
 node_js:
-  - "8"
   - "10"
-  - "node"
+  - "12"
+  - "14"
+
+script:
+  - if [[ $TRAVIS_OS_NAME == "linux" ]]; then
+      npm run eslint;
+    fi
+  - npm run test

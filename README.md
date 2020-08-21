@@ -119,7 +119,7 @@ math:
     options:
       throwOnError: false
   mathjax:
-    css: 'https://cdn.jsdelivr.net/gh/hexojs/hexo-math/dist/style.css'
+    css: 'https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css'
     options:
       conversion:
         display: false

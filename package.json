@@ -1,6 +1,6 @@
 {
   "name": "hexo-math",
-  "version": "3.0.4",
+  "version": "4.0.0",
   "description": "Add KaTeX and MathJax support to Hexo",
   "main": "index.js",
   "directories": {

@@ -203,6 +203,14 @@ Following options will be parsed as argument for that specific content:
 }
 ```
 
+## Similar project
+
+- [hexo-filter-mathjax]: A MathJax plugin developed by @stevenjoezhang, who is also a Hexo developer. It enables you to write LaTeX in-line within your post without using a tag `{% %}`.
+  * hexo-math uses tag plugin approach due to minor incompatibility between LaTeX and [marked], the default markdown renderer of Hexo (via [hexo-renderer-marked]).
+
 [KaTex]: https://katex.org/
 [MathJax]: https://www.mathjax.org/
 [Hexo]: https://hexo.io/
+[hexo-filter-mathjax]: https://github.com/next-theme/hexo-filter-mathjax
+[marked]: https://github.com/markedjs/marked
+[hexo-renderer-marked]: https://github.com/hexojs/hexo-renderer-marked

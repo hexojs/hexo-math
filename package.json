@@ -37,7 +37,7 @@
   "homepage": "https://github.com/hexojs/hexo-math",
   "dependencies": {
     "hexo-util": "^2.2.0",
-    "katex": "^0.12.0",
+    "katex": "^0.13.9",
     "mathjax": "^3.1.0"
   },
   "devDependencies": {

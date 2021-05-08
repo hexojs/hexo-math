@@ -1,0 +1,13 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 20
+  ignore:
+  - dependency-name: katex
+    versions:
+    - 0.13.0
+    - 0.13.1
+    - 0.13.2

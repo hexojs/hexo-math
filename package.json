@@ -45,6 +45,6 @@
     "eslint": "^7.5.0",
     "eslint-config-hexo": "^4.1.0",
     "hexo": "^5.0.2",
-    "mocha": "^8.0.1"
+    "mocha": "^9.0.2"
   }
 }

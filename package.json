@@ -1,6 +1,6 @@
 {
   "name": "hexo-math",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Add KaTeX and MathJax support to Hexo",
   "main": "index.js",
   "directories": {
@@ -19,7 +19,10 @@
     "eslint": "eslint .",
     "test": "mocha test/index.js"
   },
-  "repository": "hexojs/hexo-math",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hexojs/hexo-math.git"
+  },
   "keywords": [
     "hexo",
     "katex",

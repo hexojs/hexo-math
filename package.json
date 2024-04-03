@@ -44,7 +44,7 @@
     "mathjax": "^3.2.2"
   },
   "devDependencies": {
-    "chai": "^4.4.1",
+    "chai": "^5.1.0",
     "eslint": "^8.57.0",
     "eslint-config-hexo": "^5.0.0",
     "hexo": "^7.1.1",

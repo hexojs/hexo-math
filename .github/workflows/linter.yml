@@ -1,27 +1,28 @@
 name: Linter
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - "master"
+  pull_request:
+
+env:
+  default_node_version: 14
 
 jobs:
   linter:
+    name: Linter
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - name: Setup Node.js ${{env.default_node_version}} and Cache
+        uses: actions/setup-node@v4
         with:
-          node-version: '12.x'
-      - name: Cache NPM dependencies
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache
+          node-version: ${{env.default_node_version}}
+          cache: npm
+          cache-dependency-path: "package.json"
+
       - name: Install Dependencies
         run: npm install
       - name: Lint
-        run: |
-          npm run eslint
-        env:
-          CI: true
+        run: npm run eslint

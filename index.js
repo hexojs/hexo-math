@@ -4,13 +4,13 @@
 
 hexo.config.math = Object.assign({
   katex: {
-    css: 'https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css',
+    css: 'https://fastly.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css',
     options: {
       throwOnError: false
     }
   },
   mathjax: {
-    css: 'https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css',
+    css: 'https://fastly.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css',
     options: {
       // https://docs.mathjax.org/en/latest/web/typeset.html#conversion-options
       conversion: {

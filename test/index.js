@@ -12,14 +12,14 @@ describe('hexo-math', () => {
     math: {
       katex: {
         enable: true,
-        css: 'https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css',
+        css: 'https://fastly.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css',
         options: {
           throwOnError: false
         }
       },
       mathjax: {
         enable: true,
-        css: 'https://cdn.jsdelivr.net/gh/hexojs/hexo-math/master/dist/style.css',
+        css: 'https://fastly.jsdelivr.net/gh/hexojs/hexo-math/master/dist/style.css',
         options: {
           conversion: {
             display: false
